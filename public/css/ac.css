@@ -1,0 +1,258 @@
+/* ============================================================
+   AC System — custom styles
+   Requiere Bootstrap 5. Coloca este archivo en public/css/ac.css
+   ============================================================ */
+
+/* ── Variables ── */
+:root {
+    --ac-primary:        #3f5c22;
+    --ac-primary-dark:   #2c4118;
+    --ac-primary-light:  #eef7d9;
+    --ac-accent:         #93c90f;
+    --ac-sidebar-width:  240px;
+    --ac-topbar-height:  56px;
+    --ac-radius:         0.5rem;
+    --ac-shadow:         0 1px 4px rgba(0, 0, 0, .08);
+    --ac-border:         #dee2e6;
+    --ac-bg:             #f4f6f8;
+    --ac-text-muted:     #6c757d;
+}
+
+/* ── Reset / Base ── */
+body {
+    background-color: var(--ac-bg);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+}
+
+/* ── Sidebar ── */
+.ac-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--ac-sidebar-width);
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid var(--ac-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 1040;
+    overflow-y: auto;
+    transition: transform 0.25s ease;
+}
+
+.ac-sidebar-brand {
+    display: flex;
+    align-items: center;
+    height: var(--ac-topbar-height);
+    padding: 0 1.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ac-primary);
+    border-bottom: 1px solid var(--ac-border);
+    flex-shrink: 0;
+}
+
+.ac-nav-list {
+    list-style: none;
+    padding: 0.75rem 0;
+    margin: 0;
+    flex: 1;
+}
+
+.ac-nav-section {
+    padding: 0.6rem 1.25rem 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ac-text-muted);
+    margin-top: 0.25rem;
+}
+
+.ac-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.5rem 1.25rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 0;
+    font-size: 0.875rem;
+    transition: background 0.15s, color 0.15s;
+}
+
+.ac-nav-link i {
+    font-size: 1rem;
+    width: 1.1rem;
+    text-align: center;
+    color: var(--ac-text-muted);
+}
+
+.ac-nav-link:hover {
+    background: var(--ac-primary-light);
+    color: var(--ac-primary);
+}
+
+.ac-nav-link:hover i {
+    color: var(--ac-primary);
+}
+
+.ac-nav-link.active {
+    background: var(--ac-primary-light);
+    color: var(--ac-primary);
+    font-weight: 600;
+    border-right: 3px solid var(--ac-accent);
+}
+
+.ac-nav-link.active i {
+    color: var(--ac-primary);
+}
+
+/* ── Main wrapper ── */
+.ac-main-wrapper {
+    margin-left: var(--ac-sidebar-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Topbar ── */
+.ac-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    height: var(--ac-topbar-height);
+    background: #fff;
+    border-bottom: 1px solid var(--ac-border);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    box-shadow: var(--ac-shadow);
+}
+
+.ac-sidebar-toggle {
+    border: none !important;
+    background: transparent !important;
+    color: var(--ac-text-muted) !important;
+    padding: 0.25rem 0.5rem !important;
+    display: none; /* visible solo en móvil */
+}
+
+/* ── Content area ── */
+.ac-content {
+    padding: 1.75rem 1.5rem;
+    flex: 1;
+}
+
+/* ── ac-page-head ──
+   Encabezado de página: título a la izquierda, acción a la derecha.
+   Uso: <div class="ac-page-head"><div><h1>…</h1><p>…</p></div><a …></div>
+*/
+.ac-page-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ac-page-head h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.1rem;
+}
+
+.ac-page-head p {
+    font-size: 0.85rem;
+    color: var(--ac-text-muted);
+    margin: 0;
+}
+
+/* ── ac-card ──
+   Contenedor con fondo blanco, borde y sombra ligera.
+   Uso: <div class="ac-card"> … </div>
+   Combina con p-3, p-4 de Bootstrap para padding.
+*/
+.ac-card {
+    background: #fff;
+    border: 1px solid var(--ac-border);
+    border-radius: var(--ac-radius);
+    box-shadow: var(--ac-shadow);
+}
+
+/* ── btn-ac-primary ──
+   Botón principal en verde corporativo.
+   Uso: <button class="btn btn-ac-primary">…</button>
+*/
+.btn-ac-primary {
+    background-color: var(--ac-primary);
+    border-color: var(--ac-primary);
+    color: #fff;
+}
+
+.btn-ac-primary:hover,
+.btn-ac-primary:focus {
+    background-color: var(--ac-primary-dark);
+    border-color: var(--ac-primary-dark);
+    color: #fff;
+}
+
+.btn-ac-primary:active {
+    background-color: var(--ac-primary-dark) !important;
+    border-color: var(--ac-primary-dark) !important;
+}
+
+.btn-ac-primary:disabled {
+    background-color: var(--ac-primary);
+    border-color: var(--ac-primary);
+    opacity: 0.65;
+}
+
+/* ── ac-mono ──
+   Fuente monoespaciada para códigos, DNI, barcodes, etc.
+   Uso: <span class="ac-mono">…</span>
+*/
+.ac-mono {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875em;
+    letter-spacing: 0.03em;
+}
+
+/* ── Ajustes de tabla ── */
+.table th {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ac-text-muted);
+    white-space: nowrap;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* ── Responsive: colapso del sidebar ── */
+@media (max-width: 767.98px) {
+    .ac-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .ac-sidebar.ac-sidebar-open {
+        transform: translateX(0);
+    }
+
+    .ac-main-wrapper {
+        margin-left: 0;
+    }
+
+    .ac-sidebar-toggle {
+        display: inline-flex !important;
+    }
+
+    .ac-content {
+        padding: 1.25rem 1rem;
+    }
+}
