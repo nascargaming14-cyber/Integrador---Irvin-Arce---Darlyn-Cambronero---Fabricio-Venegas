@@ -30,6 +30,16 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// Recuperar contraseña (por correo)
+Route::get('/olvide-contrasena', [AuthController::class, 'showForgotPassword'])->name('password.forgot');
+Route::post('/olvide-contrasena', [AuthController::class, 'sendResetLink'])
+    ->middleware('throttle:5,1')
+    ->name('password.email');
+Route::get('/restablecer-contrasena/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/restablecer-contrasena', [AuthController::class, 'resetPassword'])
+    ->middleware('throttle:5,1')
+    ->name('password.update');
+
 // ══ TODO LO DE ABAJO REQUIERE SESIÓN INICIADA ══
 Route::middleware('auth')->group(function () {
 

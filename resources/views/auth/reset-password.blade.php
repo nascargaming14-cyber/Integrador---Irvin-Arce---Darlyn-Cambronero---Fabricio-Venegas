@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión — Servigrama</title>
+    <title>Nueva contraseña — Servigrama</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
@@ -18,6 +18,7 @@
             align-items: center;
             justify-content: center;
             font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 1rem 0;
         }
         .login-card {
             width: 100%;
@@ -36,18 +37,14 @@
             border-color: var(--sv-light-green);
             box-shadow: 0 0 0 0.2rem rgba(140, 198, 63, 0.25);
         }
-        #togglePassword {
+        .toggle-pw {
             border-color: #ced4da;
             color: var(--sv-dark-green);
         }
-        #togglePassword:hover, #togglePassword:focus {
+        .toggle-pw:hover, .toggle-pw:focus {
             background: var(--sv-light-green);
             border-color: var(--sv-light-green);
             color: #1f3a0f;
-        }
-        .form-check-input:checked {
-            background-color: var(--sv-light-green);
-            border-color: var(--sv-light-green);
         }
         .btn-primary { background: var(--sv-light-green); border-color: var(--sv-light-green); color: #1f3a0f; font-weight: 600; }
         .btn-primary:hover { background: var(--sv-dark-green); border-color: var(--sv-dark-green); color: #fff; }
@@ -58,11 +55,7 @@
 <body>
     <div class="card login-card p-4">
         <img src="{{ asset('Imagenes/servigrama.png') }}" alt="Servigrama" class="brand-logo">
-        <p class="text-center text-muted small mb-4">Inicia sesión para continuar</p>
-
-        @if (session('success'))
-            <div class="alert alert-success py-2 small">{{ session('success') }}</div>
-        @endif
+        <p class="text-center text-muted small mb-4">Crea tu nueva contraseña</p>
 
         @if ($errors->any())
             <div class="alert alert-danger py-2 small">
@@ -72,48 +65,57 @@
             </div>
         @endif
 
-        <form action="{{ route('login.attempt') }}" method="POST">
+        <form action="{{ route('password.update') }}" method="POST">
             @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="mb-3">
                 <label class="form-label small">Correo electrónico</label>
                 <input type="email" name="email" class="form-control"
-                       value="{{ old('email') }}" required autofocus>
+                       value="{{ old('email', $email) }}" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label small">Contraseña</label>
+                <label class="form-label small">Nueva contraseña</label>
                 <div class="input-group">
-                    <input type="password" name="password" id="password" class="form-control" required>
-                    <button type="button" class="btn btn-outline-secondary" id="togglePassword" tabindex="-1">
-                        <i class="bi bi-eye" id="toggleIcon"></i>
+                    <input type="password" name="password" id="password" class="form-control"
+                           minlength="8" required autofocus>
+                    <button type="button" class="btn btn-outline-secondary toggle-pw" data-target="password" tabindex="-1">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+                <div class="form-text">Mínimo 8 caracteres.</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label small">Confirmar contraseña</label>
+                <div class="input-group">
+                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"
+                           minlength="8" required>
+                    <button type="button" class="btn btn-outline-secondary toggle-pw" data-target="password_confirmation" tabindex="-1">
+                        <i class="bi bi-eye"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="form-check mb-3">
-                <input type="checkbox" name="remember" class="form-check-input" id="remember">
-                <label class="form-check-label small" for="remember">Recordarme</label>
-            </div>
+            <button type="submit" class="btn btn-primary w-100">Guardar contraseña</button>
 
-            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-
-            <a href="{{ route('password.forgot') }}" class="link-sv d-block text-center small mt-3">
-                ¿Olvidaste tu contraseña?
+            <a href="{{ route('login') }}" class="link-sv d-block text-center small mt-3">
+                Volver al inicio de sesión
             </a>
         </form>
     </div>
 
     <script>
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
-        const toggleIcon = document.getElementById('toggleIcon');
-
-        togglePassword.addEventListener('click', function () {
-            const isPassword = passwordInput.getAttribute('type') === 'password';
-            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-            toggleIcon.classList.toggle('bi-eye');
-            toggleIcon.classList.toggle('bi-eye-slash');
+        document.querySelectorAll('.toggle-pw').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const input = document.getElementById(btn.dataset.target);
+                const icon = btn.querySelector('i');
+                const isPassword = input.getAttribute('type') === 'password';
+                input.setAttribute('type', isPassword ? 'text' : 'password');
+                icon.classList.toggle('bi-eye');
+                icon.classList.toggle('bi-eye-slash');
+            });
         });
     </script>
 </body>
