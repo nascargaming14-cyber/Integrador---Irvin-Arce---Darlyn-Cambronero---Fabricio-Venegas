@@ -26,8 +26,11 @@ use App\Http\Controllers\Admin\UserManagementController;
 */
 
 // ══ AUTH (sin login requerido) ══
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+// Si ya hay sesión iniciada, el login redirige al dashboard
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+});
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Recuperar contraseña (por correo)

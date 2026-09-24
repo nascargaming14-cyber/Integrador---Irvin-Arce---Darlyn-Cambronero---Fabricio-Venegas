@@ -708,6 +708,16 @@
         });
 </script>
 
+<!-- Si el navegador restaura la página desde caché (atrás/adelante), la recarga -->
+<script>
+    window.addEventListener('pageshow', function (event) {
+        const nav = performance.getEntriesByType('navigation')[0];
+        if (event.persisted || (nav && nav.type === 'back_forward')) {
+            window.location.reload();
+        }
+    });
+</script>
+
 @stack('scripts')
 </body>
 </html>

@@ -12,12 +12,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
-    })
-    ->withMiddleware(function (Middleware $middleware) {
-    $middleware->alias([
-        'can.access' => \App\Http\Middleware\EnsureUserCanAccess::class,
-    ]);
+        $middleware->alias([
+            'can.access' => \App\Http\Middleware\EnsureUserCanAccess::class,
+        ]);
+
+        // Evita que el navegador guarde páginas en caché (botón atrás/adelante)
+        $middleware->web(append: [
+            \App\Http\Middleware\PreventBackHistory::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
