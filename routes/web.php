@@ -18,6 +18,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Admin\AuditLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,11 +105,13 @@ Route::middleware('auth')->group(function () {
     });
 
     // ══ SOLO ADMINISTRADOR ══
-    // Usuarios, Roles y Status son tablas de configuración del sistema:
+    // Usuarios, Roles, Status e Historial son de configuración del sistema:
     // se gatean con 'users', que en permissions.php solo tiene el rol Administrador.
     Route::middleware('can.access:users')->group(function () {
         Route::resource('users', UserManagementController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('status', StatusController::class);
+        Route::get('/historial', [AuditLogController::class, 'index'])->name('audit.index');
+        Route::get('/historial/pdf', [AuditLogController::class, 'pdf'])->name('audit.pdf');
     });
 });

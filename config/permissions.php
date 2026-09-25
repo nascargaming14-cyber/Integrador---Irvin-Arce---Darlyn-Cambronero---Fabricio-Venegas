@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Administrador' => ['dashboard', 'customers', 'products', 'categories', 'suppliers', 'orders', 'reports.sales', 'reports.inventory', 'users'],
+    'Administrador' => ['dashboard', 'customers', 'products', 'categories', 'suppliers', 'orders', 'reports.sales', 'reports.inventory', 'users', 'audit'],
     'Gerencia'      => ['dashboard', 'customers.view', 'products.view', 'orders.view', 'reports.sales', 'reports.inventory'],
     'Ventas'        => ['dashboard', 'customers', 'orders', 'reports.sales'],
     'Supervisor de Ventas' => ['dashboard', 'customers', 'orders', 'reports.sales'],

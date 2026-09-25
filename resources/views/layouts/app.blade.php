@@ -565,6 +565,10 @@
                class="nav-item-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
                 <i class="bi bi-person-gear"></i> Usuarios
             </a>
+            <a href="{{ route('audit.index') }}"
+               class="nav-item-link {{ request()->routeIs('audit.*') ? 'active' : '' }}">
+                <i class="bi bi-clock-history"></i> Historial
+            </a>
         @endif
     </div>
 </nav>
