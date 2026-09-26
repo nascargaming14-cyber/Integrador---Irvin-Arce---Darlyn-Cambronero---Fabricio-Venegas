@@ -14,15 +14,17 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, LogsActivity;
 
-    // password y remember_token ya se excluyen siempre desde el trait,
-    // pero los dejamos explícitos aquí por claridad.
-    protected array $auditExclude = ['password', 'remember_token'];
+    // password, remember_token y pin ya se excluyen siempre desde el trait
+    // (password/remember_token) o aquí (pin), pero los dejamos explícitos
+    // por claridad: el PIN es una credencial, no debe verse en el historial.
+    protected array $auditExclude = ['password', 'remember_token', 'pin'];
 
     protected $fillable = [
         'user_name',
         'email',
         'telephone',
         'password',
+        'pin',
         'role_id',
         'status_id',
     ];
@@ -30,6 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'pin',
     ];
 
     protected function casts(): array

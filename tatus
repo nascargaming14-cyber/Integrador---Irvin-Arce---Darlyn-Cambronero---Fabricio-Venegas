@@ -1,0 +1,13 @@
+[33mcommit c16017fc3561c8b4ece481a5c2f045e729a674c2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Fabricio <venegasfabricio93@gmail.com>
+Date:   Sat Sep 26 11:22:52 2026 -0600
+
+    Agrego historial de movimientos y actualizo seeders
+
+ database/seeders/DatabaseSeeder.php              |   8 [32m+[m[31m-[m
+ database/seeders/ProductSuppliersTableSeeder.php | 106 [32m+++++++++[m[31m---------[m
+ database/seeders/ProductsTableSeeder.php         | 135 [32m+++++++++++[m[31m------------[m
+ database/seeders/SuppliersTableSeeder.php        |  25 [32m++[m[31m---[m
+ database/seeders/UnitMeasurementTableSeeder.php  | 121 [32m++++++++++[m[31m----------[m
+ database/seeders/UsersTableSeeder.php            |  53 [32m+++++[m[31m----[m
+ 6 files changed, 225 insertions(+), 223 deletions(-)

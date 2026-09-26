@@ -16,8 +16,8 @@ use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\AuditLogController;
 
@@ -62,16 +62,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('customers', CustomerController::class);
     });
 
-    // ── Calendario / pizarra de trabajos (cualquier usuario autenticado) ──
-    Route::prefix('calendario')->name('calendar.')->group(function () {
-        Route::get('/', [CalendarController::class, 'index'])->name('index');
-        Route::post('/', [CalendarController::class, 'store'])->name('store');
-        Route::put('/{calendarJob}', [CalendarController::class, 'update'])->name('update');
-        Route::patch('/{calendarJob}/estado', [CalendarController::class, 'updateStatus'])->name('update-status');
-        Route::post('/{calendarJob}/confirmar', [CalendarController::class, 'confirm'])->name('confirm');
-        Route::delete('/{calendarJob}', [CalendarController::class, 'destroy'])->name('destroy');
-    });
-
     // ── Productos ──
     Route::middleware('can.access:products')->group(function () {
         Route::resource('products', ProductController::class);
@@ -113,6 +103,16 @@ Route::middleware('auth')->group(function () {
     Route::middleware('can.access:reports.inventory')->group(function () {
         Route::get('/reports/inventory', [ReportController::class, 'inventoryForm'])->name('reports.inventory.form');
         Route::get('/reports/inventory/pdf', [ReportController::class, 'inventoryReport'])->name('reports.inventory.pdf');
+    });
+
+    // ── Calendario ──
+    Route::prefix('calendar')->name('calendar.')->group(function () {
+        Route::get('/', [CalendarController::class, 'index'])->name('index');
+        Route::post('/', [CalendarController::class, 'store'])->name('store');
+        Route::put('/{calendarJob}', [CalendarController::class, 'update'])->name('update');
+        Route::patch('/{calendarJob}/status', [CalendarController::class, 'updateStatus'])->name('update-status');
+        Route::post('/{calendarJob}/confirm', [CalendarController::class, 'confirm'])->name('confirm');
+        Route::delete('/{calendarJob}', [CalendarController::class, 'destroy'])->name('destroy');
     });
 
     // ══ SOLO ADMINISTRADOR ══

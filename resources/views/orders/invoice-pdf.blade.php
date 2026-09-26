@@ -40,10 +40,25 @@
             vertical-align: top;
         }
 
-        .logo {
-            max-width: 190px;
-            max-height: 80px;
-            margin-bottom: 8px;
+        /* Logo en texto (sin imagen, no depende de la extensión GD de PHP) */
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: #3f5c22;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text .accent {
+            color: #93c90f;
+        }
+
+        .logo-tagline {
+            font-size: 8px;
+            letter-spacing: 1.5px;
+            color: #6b7280;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
         }
 
         .company-meta {
@@ -247,8 +262,6 @@
         $companyAddress = 'San Pedro, Sarchí, Alajuela, Costa Rica';
         $companyPhones  = '+(506) 2454-1600 / +(506) 8317-2732';
         $companyEmails  = 'ventas@servigrama.com / cesped@servigrama.com';
-        // Ruta del logo dentro de tu proyecto Laravel (ver instrucciones más abajo)
-        $logoPath = public_path('Imagenes/servigrama.png');
     @endphp
 
     {{-- ── Pie de página fijo: se repite igual en todas las páginas ── --}}
@@ -265,9 +278,8 @@
     <table class="header-table">
         <tr>
             <td style="width: 55%;">
-                @if (file_exists($logoPath))
-                    <img src="{{ $logoPath }}" class="logo" alt="{{ $companyName }}">
-                @endif
+                <p class="logo-text">ser<span class="accent">V</span>igrama</p>
+                <p class="logo-tagline">Césped y Follajes Sintéticos</p>
                 <div class="company-meta">
                     {{ $companyAddress }}<br>
                     Tel: {{ $companyPhones }}<br>

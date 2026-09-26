@@ -51,6 +51,8 @@ class AuditLog extends Model
             'order_details'     => 'Detalle de órdenes',
             'users'             => 'Usuarios',
             'roles'             => 'Roles',
+            'calendar_jobs'     => 'Calendario',
+            'crews'             => 'Cuadrillas',
         ];
     }
 
@@ -111,6 +113,24 @@ class AuditLog extends Model
             'quantity'          => 'Cantidad',
             'product_id'        => 'Producto',
             'customer_id'       => 'Cliente',
+
+            // Calendario / cuadrillas
+            'crew_id'           => 'Cuadrilla',
+            'work_date'         => 'Fecha del trabajo',
+            'client_name'       => 'Cliente',
+            'location'          => 'Ubicación',
+            'area_m2'           => 'Área (m²)',
+            'material_type'     => 'Tipo de material',
+            'notes'             => 'Notas',
+            'completed'         => 'Completado',
+            'confirmed'         => 'Confirmado',
+            'confirmed_by'      => 'Confirmado por',
+            'confirmed_at'      => 'Fecha de confirmación',
+            'stock_deducted'    => 'Stock descontado',
+            'code'              => 'Código',
+            'label'             => 'Letra en pizarra',
+            'sort_order'        => 'Orden',
+            'active'            => 'Activa',
         ];
     }
 

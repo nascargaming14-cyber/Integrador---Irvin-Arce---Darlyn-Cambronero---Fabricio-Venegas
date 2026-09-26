@@ -86,16 +86,20 @@ class CalendarController extends Controller
         }
 
         DB::transaction(function () use ($validated) {
-            $job = CalendarJob::create($validated);
-
             // Pendiente por defecto: se rebaja de una vez; se devuelve solo si luego se marca "No completado"
-            if ($job->product_id && $job->area_m2) {
-                $product = Product::find($job->product_id);
+            $willDeductStock = false;
+
+            if (!empty($validated['product_id']) && !empty($validated['area_m2'])) {
+                $product = Product::find($validated['product_id']);
                 if ($product) {
-                    $product->decrement('stock', $job->area_m2);
+                    $product->decrement('stock', $validated['area_m2']);
+                    $willDeductStock = true;
                 }
-                $job->update(['stock_deducted' => true]);
             }
+
+            $validated['stock_deducted'] = $willDeductStock;
+
+            CalendarJob::create($validated);
         });
 
         return redirect()

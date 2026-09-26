@@ -7,6 +7,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 /**
+ * Agrega esto a cualquier modelo para que quede registrado en el historial
+ * (audit_logs) cada vez que se crea, edita o elimina un registro:
+ *
+ *     use App\Traits\LogsActivity;
+ *
+ *     class Product extends Model
+ *     {
+ *         use HasFactory, LogsActivity;
+ *         ...
+ *     }
+ *
+ * Opcional, dentro del modelo puedes definir:
+ *   - protected array $auditExclude = ['campo1', 'campo2'];  // no auditar estos campos
+ *   - protected string $auditModule = 'nombre_modulo';       // si no quieres que se use el nombre de tabla
+ *
  * @mixin \Illuminate\Database\Eloquent\Model
  * @method static void created(\Closure|string $callback)
  * @method static void updated(\Closure|string $callback)
@@ -74,7 +89,7 @@ trait LogsActivity
         $candidates = [
             'product_name', 'user_name', 'role_name', 'status_name',
             'category_name', 'sub_category_name', 'unit_name',
-            'supplier_name', 'customer_name', 'name',
+            'supplier_name', 'customer_name', 'client_name', 'label', 'name',
         ];
 
         foreach ($candidates as $field) {
