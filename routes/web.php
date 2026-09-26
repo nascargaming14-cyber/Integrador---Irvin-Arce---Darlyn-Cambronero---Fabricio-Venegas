@@ -16,6 +16,7 @@ use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\AuditLogController;
@@ -59,6 +60,16 @@ Route::middleware('auth')->group(function () {
     // ── Clientes ──
     Route::middleware('can.access:customers')->group(function () {
         Route::resource('customers', CustomerController::class);
+    });
+
+    // ── Calendario / pizarra de trabajos (cualquier usuario autenticado) ──
+    Route::prefix('calendario')->name('calendar.')->group(function () {
+        Route::get('/', [CalendarController::class, 'index'])->name('index');
+        Route::post('/', [CalendarController::class, 'store'])->name('store');
+        Route::put('/{calendarJob}', [CalendarController::class, 'update'])->name('update');
+        Route::patch('/{calendarJob}/estado', [CalendarController::class, 'updateStatus'])->name('update-status');
+        Route::post('/{calendarJob}/confirmar', [CalendarController::class, 'confirm'])->name('confirm');
+        Route::delete('/{calendarJob}', [CalendarController::class, 'destroy'])->name('destroy');
     });
 
     // ── Productos ──

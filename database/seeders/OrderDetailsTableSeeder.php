@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class OrderDetailsTableSeeder extends Seeder
 {
@@ -14,12 +15,12 @@ class OrderDetailsTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('order_details')->delete();
-        
-        \DB::table('order_details')->insert(array (
-            0 => 
+
+        DB::table('order_details')->delete();
+
+        DB::table('order_details')->insert(array (
+            0 =>
             array (
                 'id' => 34,
                 'header_order_id' => 22,
@@ -34,7 +35,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-07-26 03:58:57',
                 'updated_at' => '2026-07-26 03:58:57',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 35,
                 'header_order_id' => 22,
@@ -49,7 +50,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-07-26 03:58:57',
                 'updated_at' => '2026-07-26 03:58:57',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 36,
                 'header_order_id' => 22,
@@ -64,7 +65,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-07-26 03:58:57',
                 'updated_at' => '2026-07-26 03:58:57',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 46,
                 'header_order_id' => 23,
@@ -79,7 +80,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:05:45',
                 'updated_at' => '2026-08-11 21:05:45',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 47,
                 'header_order_id' => 1,
@@ -94,7 +95,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:06:19',
                 'updated_at' => '2026-08-11 21:06:19',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 48,
                 'header_order_id' => 1,
@@ -109,7 +110,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:06:19',
                 'updated_at' => '2026-08-11 21:06:19',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 49,
                 'header_order_id' => 2,
@@ -124,7 +125,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:07:03',
                 'updated_at' => '2026-08-11 21:07:03',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 50,
                 'header_order_id' => 2,
@@ -139,7 +140,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:07:03',
                 'updated_at' => '2026-08-11 21:07:03',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 51,
                 'header_order_id' => 3,
@@ -154,7 +155,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:07:27',
                 'updated_at' => '2026-08-11 21:07:27',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 52,
                 'header_order_id' => 4,
@@ -169,7 +170,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:08:50',
                 'updated_at' => '2026-08-11 21:08:50',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 53,
                 'header_order_id' => 4,
@@ -184,7 +185,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:08:51',
                 'updated_at' => '2026-08-11 21:08:51',
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 55,
                 'header_order_id' => 6,
@@ -199,7 +200,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:10:17',
                 'updated_at' => '2026-08-11 21:10:17',
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 56,
                 'header_order_id' => 7,
@@ -214,7 +215,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:12:07',
                 'updated_at' => '2026-08-11 21:12:07',
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 58,
                 'header_order_id' => 8,
@@ -229,7 +230,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:12:43',
                 'updated_at' => '2026-08-11 21:12:43',
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 59,
                 'header_order_id' => 9,
@@ -244,7 +245,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:14:17',
                 'updated_at' => '2026-08-11 21:14:17',
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 60,
                 'header_order_id' => 10,
@@ -259,7 +260,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:16:35',
                 'updated_at' => '2026-08-11 21:16:35',
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 61,
                 'header_order_id' => 10,
@@ -274,7 +275,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:16:35',
                 'updated_at' => '2026-08-11 21:16:35',
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 62,
                 'header_order_id' => 11,
@@ -289,7 +290,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:17:36',
                 'updated_at' => '2026-08-11 21:17:36',
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 63,
                 'header_order_id' => 12,
@@ -304,7 +305,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:18:08',
                 'updated_at' => '2026-08-11 21:18:08',
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 64,
                 'header_order_id' => 13,
@@ -319,7 +320,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:18:48',
                 'updated_at' => '2026-08-11 21:18:48',
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 65,
                 'header_order_id' => 14,
@@ -334,7 +335,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:19:17',
                 'updated_at' => '2026-08-11 21:19:17',
             ),
-            21 => 
+            21 =>
             array (
                 'id' => 66,
                 'header_order_id' => 15,
@@ -349,7 +350,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:19:41',
                 'updated_at' => '2026-08-11 21:19:41',
             ),
-            22 => 
+            22 =>
             array (
                 'id' => 67,
                 'header_order_id' => 15,
@@ -364,7 +365,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:19:41',
                 'updated_at' => '2026-08-11 21:19:41',
             ),
-            23 => 
+            23 =>
             array (
                 'id' => 68,
                 'header_order_id' => 16,
@@ -379,7 +380,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:20:16',
                 'updated_at' => '2026-08-11 21:20:16',
             ),
-            24 => 
+            24 =>
             array (
                 'id' => 69,
                 'header_order_id' => 17,
@@ -394,7 +395,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:21:40',
                 'updated_at' => '2026-08-11 21:21:40',
             ),
-            25 => 
+            25 =>
             array (
                 'id' => 71,
                 'header_order_id' => 19,
@@ -409,7 +410,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:23:00',
                 'updated_at' => '2026-08-11 21:23:00',
             ),
-            26 => 
+            26 =>
             array (
                 'id' => 72,
                 'header_order_id' => 19,
@@ -424,7 +425,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:23:00',
                 'updated_at' => '2026-08-11 21:23:00',
             ),
-            27 => 
+            27 =>
             array (
                 'id' => 73,
                 'header_order_id' => 18,
@@ -439,7 +440,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:23:22',
                 'updated_at' => '2026-08-11 21:23:22',
             ),
-            28 => 
+            28 =>
             array (
                 'id' => 74,
                 'header_order_id' => 20,
@@ -454,7 +455,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:23:41',
                 'updated_at' => '2026-08-11 21:23:41',
             ),
-            29 => 
+            29 =>
             array (
                 'id' => 75,
                 'header_order_id' => 21,
@@ -469,7 +470,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:24:15',
                 'updated_at' => '2026-08-11 21:24:15',
             ),
-            30 => 
+            30 =>
             array (
                 'id' => 77,
                 'header_order_id' => 24,
@@ -484,7 +485,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:25:26',
                 'updated_at' => '2026-08-11 21:25:26',
             ),
-            31 => 
+            31 =>
             array (
                 'id' => 79,
                 'header_order_id' => 25,
@@ -499,7 +500,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:26:31',
                 'updated_at' => '2026-08-11 21:26:31',
             ),
-            32 => 
+            32 =>
             array (
                 'id' => 80,
                 'header_order_id' => 26,
@@ -514,7 +515,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:26:53',
                 'updated_at' => '2026-08-11 21:26:53',
             ),
-            33 => 
+            33 =>
             array (
                 'id' => 81,
                 'header_order_id' => 26,
@@ -529,7 +530,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:26:53',
                 'updated_at' => '2026-08-11 21:26:53',
             ),
-            34 => 
+            34 =>
             array (
                 'id' => 88,
                 'header_order_id' => 27,
@@ -544,7 +545,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-24 20:36:18',
                 'updated_at' => '2026-08-24 20:36:18',
             ),
-            35 => 
+            35 =>
             array (
                 'id' => 89,
                 'header_order_id' => 27,
@@ -559,7 +560,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-24 20:36:18',
                 'updated_at' => '2026-08-24 20:36:18',
             ),
-            36 => 
+            36 =>
             array (
                 'id' => 91,
                 'header_order_id' => 33,
@@ -574,7 +575,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'created_at' => '2026-08-24 20:44:39',
                 'updated_at' => '2026-08-24 20:44:39',
             ),
-            37 => 
+            37 =>
             array (
                 'id' => 92,
                 'header_order_id' => 33,
@@ -590,7 +591,7 @@ class OrderDetailsTableSeeder extends Seeder
                 'updated_at' => '2026-08-24 20:44:39',
             ),
         ));
-        
-        
+
+
     }
 }

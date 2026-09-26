@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CustomersTableSeeder extends Seeder
 {
@@ -14,12 +15,12 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('customers')->delete();
-        
-        \DB::table('customers')->insert(array (
-            0 => 
+
+        DB::table('customers')->delete();
+
+        DB::table('customers')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'customer_name' => 'Constructora San Carlos',
@@ -32,7 +33,7 @@ class CustomersTableSeeder extends Seeder
                 'country' => 'CR',
                 'id_type' => 'fisica',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'customer_name' => 'Complejo Deportivo Norte',
@@ -45,7 +46,7 @@ class CustomersTableSeeder extends Seeder
                 'country' => 'MX',
                 'id_type' => 'juridica',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'customer_name' => 'Municipalidad Local',
@@ -58,7 +59,7 @@ class CustomersTableSeeder extends Seeder
                 'country' => 'AR',
                 'id_type' => 'juridica',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'customer_name' => 'Jardines Tropicales',
@@ -71,7 +72,7 @@ class CustomersTableSeeder extends Seeder
                 'country' => 'CO',
                 'id_type' => 'fisica',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 6,
                 'customer_name' => 'Universidad Nacional de Costa Rica',
@@ -85,7 +86,7 @@ class CustomersTableSeeder extends Seeder
                 'id_type' => 'fisica',
             ),
         ));
-        
-        
+
+
     }
 }

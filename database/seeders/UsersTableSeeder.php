@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Seeder;
 
@@ -14,12 +15,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('users')->delete();
-        
-        \DB::table('users')->insert(array (
-            0 => 
+
+        DB::table('users')->delete();
+
+        DB::table('users')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'user_name' => 'Administrador',
@@ -33,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-06-15 23:32:54',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'user_name' => 'Ventas',
@@ -47,7 +48,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-07-26 04:10:53',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'user_name' => 'Bodega',
@@ -61,7 +62,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-02 00:49:49',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 6,
                 'user_name' => 'super',
@@ -75,7 +76,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-08-02 00:53:23',
                 'updated_at' => '2026-08-02 00:53:23',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 7,
                 'user_name' => 'Gerencia',
@@ -89,7 +90,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-08-02 00:55:46',
                 'updated_at' => '2026-08-02 00:55:46',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 5,
                 'user_name' => 'Admin',
@@ -104,7 +105,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2026-09-24 17:11:46',
             ),
         ));
-        
-        
+
+
     }
 }

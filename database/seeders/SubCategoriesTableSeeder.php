@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SubCategoriesTableSeeder extends Seeder
 {
@@ -14,12 +15,12 @@ class SubCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('sub_categories')->delete();
-        
-        \DB::table('sub_categories')->insert(array (
-            0 => 
+
+        DB::table('sub_categories')->delete();
+
+        DB::table('sub_categories')->insert(array (
+            0 =>
             array (
                 'id' => 16,
                 'subcategory_name' => 'Hule Procesado',
@@ -28,7 +29,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:20:57',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 40,
                 'subcategory_name' => 'Esferas de 30 cm de diámetro',
@@ -37,7 +38,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-10 23:40:11',
                 'updated_at' => '2026-08-10 23:54:15',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 41,
                 'subcategory_name' => 'Esferas de 40cm de diámetro',
@@ -46,7 +47,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-10 23:40:52',
                 'updated_at' => '2026-08-10 23:54:32',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 7,
                 'subcategory_name' => 'Loseta',
@@ -55,7 +56,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-10 23:57:24',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 17,
                 'subcategory_name' => 'Marcos De Fútbol',
@@ -64,7 +65,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:22:31',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 32,
                 'subcategory_name' => 'Adoquín',
@@ -73,7 +74,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-10 23:58:02',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 33,
                 'subcategory_name' => 'Loseta De Hule',
@@ -82,7 +83,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-10 23:59:20',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 36,
                 'subcategory_name' => 'Cinta PVC',
@@ -91,7 +92,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-10 23:59:58',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 6,
                 'subcategory_name' => 'Trébol Morado',
@@ -100,7 +101,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:01:36',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 1,
                 'subcategory_name' => 'Trébol Rojo',
@@ -109,7 +110,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:01:55',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 2,
                 'subcategory_name' => 'Trébol Naranja',
@@ -118,7 +119,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:02:12',
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 3,
                 'subcategory_name' => 'Hoja De Begonia',
@@ -127,7 +128,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:02:40',
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 39,
                 'subcategory_name' => 'Helecho Premium',
@@ -136,7 +137,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-10 23:02:12',
                 'updated_at' => '2026-08-11 00:02:59',
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 4,
                 'subcategory_name' => 'Hoja De Menta',
@@ -145,7 +146,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:03:17',
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 5,
                 'subcategory_name' => 'Trébol Amarillo',
@@ -154,7 +155,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:03:37',
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 20,
                 'subcategory_name' => 'Follaje Silvestre',
@@ -163,7 +164,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:04:08',
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 21,
                 'subcategory_name' => 'Follaje Floral',
@@ -172,7 +173,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:04:26',
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 23,
                 'subcategory_name' => 'Follaje Verde Sol',
@@ -181,7 +182,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:04:44',
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 30,
                 'subcategory_name' => 'Follaje Primavera',
@@ -190,7 +191,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:05:07',
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 31,
                 'subcategory_name' => 'Follaje Tropical',
@@ -199,7 +200,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:05:28',
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 24,
                 'subcategory_name' => 'X-PRO T-25',
@@ -208,7 +209,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 00:08:23',
             ),
-            21 => 
+            21 =>
             array (
                 'id' => 37,
                 'subcategory_name' => 'X-PRO MAX',
@@ -217,7 +218,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:00:50',
             ),
-            22 => 
+            22 =>
             array (
                 'id' => 25,
                 'subcategory_name' => 'X-PRO T-30',
@@ -226,7 +227,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:01:19',
             ),
-            23 => 
+            23 =>
             array (
                 'id' => 29,
                 'subcategory_name' => 'X-PRO PREMIUM',
@@ -235,7 +236,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:01:49',
             ),
-            24 => 
+            24 =>
             array (
                 'id' => 15,
                 'subcategory_name' => 'X-PRO DIAMOND',
@@ -244,7 +245,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:02:23',
             ),
-            25 => 
+            25 =>
             array (
                 'id' => 14,
                 'subcategory_name' => 'X-PRO EVERGREEN',
@@ -253,7 +254,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:02:49',
             ),
-            26 => 
+            26 =>
             array (
                 'id' => 22,
             'subcategory_name' => 'Césped Innova (Blanco)',
@@ -262,7 +263,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:03:57',
             ),
-            27 => 
+            27 =>
             array (
                 'id' => 26,
             'subcategory_name' => 'Césped Innova (Verde)',
@@ -271,7 +272,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:04:43',
             ),
-            28 => 
+            28 =>
             array (
                 'id' => 10,
                 'subcategory_name' => 'Césped Innova Propet',
@@ -280,7 +281,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:05:19',
             ),
-            29 => 
+            29 =>
             array (
                 'id' => 8,
                 'subcategory_name' => 'Golf Pro',
@@ -289,7 +290,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:05:45',
             ),
-            30 => 
+            30 =>
             array (
                 'id' => 9,
                 'subcategory_name' => 'Rosado',
@@ -298,7 +299,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:07:15',
             ),
-            31 => 
+            31 =>
             array (
                 'id' => 11,
                 'subcategory_name' => 'Azul',
@@ -307,7 +308,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:07:38',
             ),
-            32 => 
+            32 =>
             array (
                 'id' => 19,
                 'subcategory_name' => 'Naranja',
@@ -316,7 +317,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:08:06',
             ),
-            33 => 
+            33 =>
             array (
                 'id' => 35,
                 'subcategory_name' => 'Rojo',
@@ -325,7 +326,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:08:29',
             ),
-            34 => 
+            34 =>
             array (
                 'id' => 34,
                 'subcategory_name' => 'Blanco',
@@ -334,7 +335,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:08:53',
             ),
-            35 => 
+            35 =>
             array (
                 'id' => 38,
                 'subcategory_name' => 'Amarillo',
@@ -343,7 +344,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-02 02:37:38',
                 'updated_at' => '2026-08-11 19:09:18',
             ),
-            36 => 
+            36 =>
             array (
                 'id' => 12,
                 'subcategory_name' => 'Morado',
@@ -352,7 +353,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:09:47',
             ),
-            37 => 
+            37 =>
             array (
                 'id' => 28,
                 'subcategory_name' => 'Malla Para Marcos',
@@ -361,7 +362,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:22:56',
             ),
-            38 => 
+            38 =>
             array (
                 'id' => 13,
                 'subcategory_name' => 'Césped De Cancha',
@@ -370,7 +371,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:17:49',
             ),
-            39 => 
+            39 =>
             array (
                 'id' => 27,
                 'subcategory_name' => 'Malla - Nylon',
@@ -379,7 +380,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:29:25',
             ),
-            40 => 
+            40 =>
             array (
                 'id' => 18,
                 'subcategory_name' => 'Malla - Techo',
@@ -388,7 +389,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-08-11 19:29:50',
             ),
-            41 => 
+            41 =>
             array (
                 'id' => 43,
                 'subcategory_name' => 'Malla - Polietileno',
@@ -397,7 +398,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-11 19:27:29',
                 'updated_at' => '2026-08-11 19:30:21',
             ),
-            42 => 
+            42 =>
             array (
                 'id' => 44,
                 'subcategory_name' => 'Piedra - Saco',
@@ -406,7 +407,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-11 19:42:54',
                 'updated_at' => '2026-08-11 19:42:54',
             ),
-            43 => 
+            43 =>
             array (
                 'id' => 45,
                 'subcategory_name' => 'Shockpad',
@@ -416,7 +417,7 @@ class SubCategoriesTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 19:49:57',
             ),
         ));
-        
-        
+
+
     }
 }

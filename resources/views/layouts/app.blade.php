@@ -533,6 +533,12 @@
             </a>
         @endif
 
+        <div class="sidebar-section-label">Agenda</div>
+        <a href="{{ route('calendar.index') }}"
+           class="nav-item-link {{ request()->routeIs('calendar.*') ? 'active' : '' }}">
+            <i class="bi bi-calendar3"></i> Calendario
+        </a>
+
         @if(auth()->user()->canAccess('orders') || auth()->user()->canAccess('orders.view'))
         <div class="sidebar-section-label">Ventas</div>
             <a href="{{ route('orders.index') }}"

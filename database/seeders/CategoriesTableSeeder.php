@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -14,12 +15,12 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('categories')->delete();
-        
-        \DB::table('categories')->insert(array (
-            0 => 
+
+        DB::table('categories')->delete();
+
+        DB::table('categories')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'category_name' => 'Césped Sintético',
@@ -27,7 +28,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
             'category_name' => 'Componentes de Cancha (Caucho/Arena)',
@@ -35,7 +36,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'category_name' => 'Marcos y Porterías',
@@ -43,7 +44,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'category_name' => 'Redes de Marco',
@@ -51,7 +52,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
                 'category_name' => 'Mallas y Redes Perimetrales',
@@ -59,7 +60,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
                 'category_name' => 'Iluminación y Reflectores LED',
@@ -67,7 +68,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 7,
             'category_name' => 'Accesorios de Instalación (Goma/Pegamento)',
@@ -75,7 +76,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 8,
                 'category_name' => 'Herramientas de Trabajo',
@@ -83,7 +84,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 9,
                 'category_name' => 'Maquinaria de Mantenimiento',
@@ -91,7 +92,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 10,
                 'category_name' => 'Insumos de Mantenimiento y Limpieza',
@@ -99,7 +100,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 11,
                 'category_name' => 'Balones de Fútbol',
@@ -107,7 +108,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 12,
                 'category_name' => 'Chalecos y Petos',
@@ -115,7 +116,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 13,
                 'category_name' => 'Equipo de Seguridad y Primeros Auxilios',
@@ -123,7 +124,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 16,
                 'category_name' => 'Esferas',
@@ -131,7 +132,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-10 23:38:24',
                 'updated_at' => '2026-08-10 23:52:51',
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 17,
                 'category_name' => 'Decorativos',
@@ -139,7 +140,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-10 23:55:44',
                 'updated_at' => '2026-08-10 23:55:44',
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 18,
                 'category_name' => 'Complementos Ideales',
@@ -147,7 +148,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-10 23:58:54',
                 'updated_at' => '2026-08-10 23:58:54',
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 19,
                 'category_name' => 'Follajes',
@@ -155,7 +156,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-11 00:00:56',
                 'updated_at' => '2026-08-11 00:00:56',
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 20,
                 'category_name' => 'Jardines',
@@ -163,7 +164,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-11 00:06:35',
                 'updated_at' => '2026-08-11 00:06:35',
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 15,
                 'category_name' => 'Césped De Colores',
@@ -171,7 +172,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-07-27 16:23:39',
                 'updated_at' => '2026-08-11 19:06:21',
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 21,
                 'category_name' => 'Área Deportiva',
@@ -179,7 +180,7 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2026-08-11 19:10:43',
                 'updated_at' => '2026-08-11 19:10:43',
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 22,
                 'category_name' => 'Malla Perimetrales',
@@ -188,7 +189,7 @@ class CategoriesTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 19:23:20',
             ),
         ));
-        
-        
+
+
     }
 }

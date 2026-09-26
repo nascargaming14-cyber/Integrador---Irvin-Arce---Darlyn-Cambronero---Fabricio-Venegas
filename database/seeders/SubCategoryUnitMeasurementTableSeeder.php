@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SubCategoryUnitMeasurementTableSeeder extends Seeder
 {
@@ -14,12 +15,12 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('sub_category_unit_measurement')->delete();
-        
-        \DB::table('sub_category_unit_measurement')->insert(array (
-            0 => 
+
+        DB::table('sub_category_unit_measurement')->delete();
+
+        DB::table('sub_category_unit_measurement')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'sub_category_id' => 1,
@@ -27,7 +28,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 3,
                 'sub_category_id' => 2,
@@ -35,7 +36,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 5,
                 'sub_category_id' => 3,
@@ -43,7 +44,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 7,
                 'sub_category_id' => 4,
@@ -51,7 +52,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 9,
                 'sub_category_id' => 5,
@@ -59,7 +60,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 23,
                 'sub_category_id' => 14,
@@ -67,7 +68,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 25,
                 'sub_category_id' => 15,
@@ -75,7 +76,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 38,
                 'sub_category_id' => 22,
@@ -83,7 +84,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 52,
                 'sub_category_id' => 32,
@@ -91,7 +92,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 54,
                 'sub_category_id' => 33,
@@ -99,7 +100,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 66,
                 'sub_category_id' => 40,
@@ -107,7 +108,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 67,
                 'sub_category_id' => 41,
@@ -115,7 +116,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 69,
                 'sub_category_id' => 7,
@@ -123,7 +124,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 70,
                 'sub_category_id' => 36,
@@ -131,7 +132,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 72,
                 'sub_category_id' => 6,
@@ -139,7 +140,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 73,
                 'sub_category_id' => 39,
@@ -147,7 +148,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 74,
                 'sub_category_id' => 20,
@@ -155,7 +156,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 75,
                 'sub_category_id' => 21,
@@ -163,7 +164,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 76,
                 'sub_category_id' => 23,
@@ -171,7 +172,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 77,
                 'sub_category_id' => 30,
@@ -179,7 +180,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 78,
                 'sub_category_id' => 31,
@@ -187,7 +188,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            21 => 
+            21 =>
             array (
                 'id' => 79,
                 'sub_category_id' => 24,
@@ -195,7 +196,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            22 => 
+            22 =>
             array (
                 'id' => 80,
                 'sub_category_id' => 37,
@@ -203,7 +204,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            23 => 
+            23 =>
             array (
                 'id' => 81,
                 'sub_category_id' => 25,
@@ -211,7 +212,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            24 => 
+            24 =>
             array (
                 'id' => 82,
                 'sub_category_id' => 29,
@@ -219,7 +220,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            25 => 
+            25 =>
             array (
                 'id' => 83,
                 'sub_category_id' => 26,
@@ -227,7 +228,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            26 => 
+            26 =>
             array (
                 'id' => 84,
                 'sub_category_id' => 10,
@@ -235,7 +236,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            27 => 
+            27 =>
             array (
                 'id' => 85,
                 'sub_category_id' => 8,
@@ -243,7 +244,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            28 => 
+            28 =>
             array (
                 'id' => 86,
                 'sub_category_id' => 9,
@@ -251,7 +252,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            29 => 
+            29 =>
             array (
                 'id' => 87,
                 'sub_category_id' => 11,
@@ -259,7 +260,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            30 => 
+            30 =>
             array (
                 'id' => 88,
                 'sub_category_id' => 19,
@@ -267,7 +268,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            31 => 
+            31 =>
             array (
                 'id' => 89,
                 'sub_category_id' => 35,
@@ -275,7 +276,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            32 => 
+            32 =>
             array (
                 'id' => 90,
                 'sub_category_id' => 34,
@@ -283,7 +284,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            33 => 
+            33 =>
             array (
                 'id' => 91,
                 'sub_category_id' => 38,
@@ -291,7 +292,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            34 => 
+            34 =>
             array (
                 'id' => 92,
                 'sub_category_id' => 12,
@@ -299,7 +300,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            35 => 
+            35 =>
             array (
                 'id' => 93,
                 'sub_category_id' => 13,
@@ -307,7 +308,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            36 => 
+            36 =>
             array (
                 'id' => 94,
                 'sub_category_id' => 16,
@@ -315,7 +316,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            37 => 
+            37 =>
             array (
                 'id' => 95,
                 'sub_category_id' => 17,
@@ -323,7 +324,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            38 => 
+            38 =>
             array (
                 'id' => 96,
                 'sub_category_id' => 28,
@@ -331,7 +332,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            39 => 
+            39 =>
             array (
                 'id' => 97,
                 'sub_category_id' => 18,
@@ -339,7 +340,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            40 => 
+            40 =>
             array (
                 'id' => 98,
                 'sub_category_id' => 27,
@@ -347,7 +348,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            41 => 
+            41 =>
             array (
                 'id' => 100,
                 'sub_category_id' => 43,
@@ -355,7 +356,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            42 => 
+            42 =>
             array (
                 'id' => 101,
                 'sub_category_id' => 44,
@@ -363,7 +364,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            43 => 
+            43 =>
             array (
                 'id' => 102,
                 'sub_category_id' => 45,
@@ -372,7 +373,7 @@ class SubCategoryUnitMeasurementTableSeeder extends Seeder
                 'updated_at' => NULL,
             ),
         ));
-        
-        
+
+
     }
 }

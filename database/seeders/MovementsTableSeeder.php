@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class MovementsTableSeeder extends Seeder
 {
@@ -14,12 +15,12 @@ class MovementsTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('movements')->delete();
-        
-        \DB::table('movements')->insert(array (
-            0 => 
+
+        DB::table('movements')->delete();
+
+        DB::table('movements')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'product_id' => 9,
@@ -31,7 +32,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'product_id' => 13,
@@ -43,7 +44,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'product_id' => 5,
@@ -55,7 +56,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'product_id' => 8,
@@ -67,7 +68,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
                 'product_id' => 6,
@@ -79,7 +80,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
                 'product_id' => 4,
@@ -91,7 +92,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 7,
                 'product_id' => 4,
@@ -103,7 +104,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 8,
                 'product_id' => 5,
@@ -115,7 +116,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 9,
                 'product_id' => 9,
@@ -127,7 +128,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 10,
                 'product_id' => 13,
@@ -139,7 +140,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 11,
                 'product_id' => 6,
@@ -151,7 +152,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 12,
                 'product_id' => 2,
@@ -163,7 +164,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 13,
                 'product_id' => 8,
@@ -175,7 +176,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 14,
                 'product_id' => 11,
@@ -187,7 +188,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 15,
                 'product_id' => 6,
@@ -199,7 +200,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 16,
                 'product_id' => 13,
@@ -211,7 +212,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 17,
                 'product_id' => 1,
@@ -223,7 +224,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 18,
                 'product_id' => 6,
@@ -235,7 +236,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 19,
                 'product_id' => 4,
@@ -247,7 +248,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 20,
                 'product_id' => 6,
@@ -259,7 +260,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 21,
                 'product_id' => 7,
@@ -271,7 +272,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            21 => 
+            21 =>
             array (
                 'id' => 22,
                 'product_id' => 8,
@@ -283,7 +284,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            22 => 
+            22 =>
             array (
                 'id' => 23,
                 'product_id' => 4,
@@ -295,7 +296,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            23 => 
+            23 =>
             array (
                 'id' => 24,
                 'product_id' => 7,
@@ -307,7 +308,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            24 => 
+            24 =>
             array (
                 'id' => 25,
                 'product_id' => 4,
@@ -319,7 +320,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            25 => 
+            25 =>
             array (
                 'id' => 26,
                 'product_id' => 7,
@@ -331,7 +332,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            26 => 
+            26 =>
             array (
                 'id' => 27,
                 'product_id' => 4,
@@ -343,7 +344,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            27 => 
+            27 =>
             array (
                 'id' => 28,
                 'product_id' => 1,
@@ -355,7 +356,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            28 => 
+            28 =>
             array (
                 'id' => 29,
                 'product_id' => 1,
@@ -367,7 +368,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-19 00:18:04',
                 'order_detail_id' => NULL,
             ),
-            29 => 
+            29 =>
             array (
                 'id' => 50,
                 'product_id' => 6,
@@ -379,7 +380,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-26 03:58:57',
                 'order_detail_id' => 34,
             ),
-            30 => 
+            30 =>
             array (
                 'id' => 51,
                 'product_id' => 7,
@@ -391,7 +392,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-26 03:58:57',
                 'order_detail_id' => 35,
             ),
-            31 => 
+            31 =>
             array (
                 'id' => 52,
                 'product_id' => 3,
@@ -403,7 +404,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-07-26 03:58:57',
                 'order_detail_id' => 36,
             ),
-            32 => 
+            32 =>
             array (
                 'id' => 62,
                 'product_id' => 5,
@@ -415,7 +416,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:05:45',
                 'order_detail_id' => 46,
             ),
-            33 => 
+            33 =>
             array (
                 'id' => 63,
                 'product_id' => 1,
@@ -427,7 +428,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:06:19',
                 'order_detail_id' => 47,
             ),
-            34 => 
+            34 =>
             array (
                 'id' => 64,
                 'product_id' => 2,
@@ -439,7 +440,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:06:19',
                 'order_detail_id' => 48,
             ),
-            35 => 
+            35 =>
             array (
                 'id' => 65,
                 'product_id' => 3,
@@ -451,7 +452,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:07:03',
                 'order_detail_id' => 49,
             ),
-            36 => 
+            36 =>
             array (
                 'id' => 66,
                 'product_id' => 4,
@@ -463,7 +464,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:07:03',
                 'order_detail_id' => 50,
             ),
-            37 => 
+            37 =>
             array (
                 'id' => 67,
                 'product_id' => 5,
@@ -475,7 +476,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:07:27',
                 'order_detail_id' => 51,
             ),
-            38 => 
+            38 =>
             array (
                 'id' => 68,
                 'product_id' => 1,
@@ -487,7 +488,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:08:51',
                 'order_detail_id' => 52,
             ),
-            39 => 
+            39 =>
             array (
                 'id' => 69,
                 'product_id' => 3,
@@ -499,7 +500,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:08:51',
                 'order_detail_id' => 53,
             ),
-            40 => 
+            40 =>
             array (
                 'id' => 71,
                 'product_id' => 38,
@@ -511,7 +512,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:10:17',
                 'order_detail_id' => 55,
             ),
-            41 => 
+            41 =>
             array (
                 'id' => 72,
                 'product_id' => 5,
@@ -523,7 +524,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:12:07',
                 'order_detail_id' => 56,
             ),
-            42 => 
+            42 =>
             array (
                 'id' => 74,
                 'product_id' => 16,
@@ -535,7 +536,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:12:43',
                 'order_detail_id' => 58,
             ),
-            43 => 
+            43 =>
             array (
                 'id' => 75,
                 'product_id' => 26,
@@ -547,7 +548,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:14:17',
                 'order_detail_id' => 59,
             ),
-            44 => 
+            44 =>
             array (
                 'id' => 76,
                 'product_id' => 7,
@@ -559,7 +560,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:16:35',
                 'order_detail_id' => 60,
             ),
-            45 => 
+            45 =>
             array (
                 'id' => 77,
                 'product_id' => 26,
@@ -571,7 +572,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:16:35',
                 'order_detail_id' => 61,
             ),
-            46 => 
+            46 =>
             array (
                 'id' => 78,
                 'product_id' => 24,
@@ -583,7 +584,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:17:36',
                 'order_detail_id' => 62,
             ),
-            47 => 
+            47 =>
             array (
                 'id' => 79,
                 'product_id' => 35,
@@ -595,7 +596,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:18:08',
                 'order_detail_id' => 63,
             ),
-            48 => 
+            48 =>
             array (
                 'id' => 80,
                 'product_id' => 15,
@@ -607,7 +608,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:18:48',
                 'order_detail_id' => 64,
             ),
-            49 => 
+            49 =>
             array (
                 'id' => 81,
                 'product_id' => 3,
@@ -619,7 +620,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:19:17',
                 'order_detail_id' => 65,
             ),
-            50 => 
+            50 =>
             array (
                 'id' => 82,
                 'product_id' => 1,
@@ -631,7 +632,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:19:41',
                 'order_detail_id' => 66,
             ),
-            51 => 
+            51 =>
             array (
                 'id' => 83,
                 'product_id' => 2,
@@ -643,7 +644,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:19:41',
                 'order_detail_id' => 67,
             ),
-            52 => 
+            52 =>
             array (
                 'id' => 84,
                 'product_id' => 14,
@@ -655,7 +656,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:20:16',
                 'order_detail_id' => 68,
             ),
-            53 => 
+            53 =>
             array (
                 'id' => 85,
                 'product_id' => 14,
@@ -667,7 +668,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:21:40',
                 'order_detail_id' => 69,
             ),
-            54 => 
+            54 =>
             array (
                 'id' => 87,
                 'product_id' => 8,
@@ -679,7 +680,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:23:00',
                 'order_detail_id' => 71,
             ),
-            55 => 
+            55 =>
             array (
                 'id' => 88,
                 'product_id' => 13,
@@ -691,7 +692,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:23:00',
                 'order_detail_id' => 72,
             ),
-            56 => 
+            56 =>
             array (
                 'id' => 89,
                 'product_id' => 23,
@@ -703,7 +704,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:23:22',
                 'order_detail_id' => 73,
             ),
-            57 => 
+            57 =>
             array (
                 'id' => 90,
                 'product_id' => 14,
@@ -715,7 +716,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:23:41',
                 'order_detail_id' => 74,
             ),
-            58 => 
+            58 =>
             array (
                 'id' => 91,
                 'product_id' => 14,
@@ -727,7 +728,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:24:15',
                 'order_detail_id' => 75,
             ),
-            59 => 
+            59 =>
             array (
                 'id' => 93,
                 'product_id' => 5,
@@ -739,7 +740,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:25:26',
                 'order_detail_id' => 77,
             ),
-            60 => 
+            60 =>
             array (
                 'id' => 95,
                 'product_id' => 25,
@@ -751,7 +752,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:26:31',
                 'order_detail_id' => 79,
             ),
-            61 => 
+            61 =>
             array (
                 'id' => 96,
                 'product_id' => 3,
@@ -763,7 +764,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:26:53',
                 'order_detail_id' => 80,
             ),
-            62 => 
+            62 =>
             array (
                 'id' => 97,
                 'product_id' => 17,
@@ -775,7 +776,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 21:26:53',
                 'order_detail_id' => 81,
             ),
-            63 => 
+            63 =>
             array (
                 'id' => 104,
                 'product_id' => 23,
@@ -787,7 +788,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-24 20:36:18',
                 'order_detail_id' => 88,
             ),
-            64 => 
+            64 =>
             array (
                 'id' => 105,
                 'product_id' => 4,
@@ -799,7 +800,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-24 20:36:18',
                 'order_detail_id' => 89,
             ),
-            65 => 
+            65 =>
             array (
                 'id' => 107,
                 'product_id' => 37,
@@ -811,7 +812,7 @@ class MovementsTableSeeder extends Seeder
                 'updated_at' => '2026-08-24 20:44:39',
                 'order_detail_id' => 91,
             ),
-            66 => 
+            66 =>
             array (
                 'id' => 108,
                 'product_id' => 19,
@@ -824,7 +825,7 @@ class MovementsTableSeeder extends Seeder
                 'order_detail_id' => 92,
             ),
         ));
-        
-        
+
+
     }
 }
