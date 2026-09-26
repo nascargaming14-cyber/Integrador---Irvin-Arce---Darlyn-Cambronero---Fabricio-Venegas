@@ -78,6 +78,14 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">PIN de confirmación (4 dígitos)</label>
+                <input type="password" name="pin" inputmode="numeric" pattern="\d{4}" maxlength="4"
+                       class="form-control @error('pin') is-invalid @enderror" placeholder="Opcional, ej. 1234">
+                <div class="form-text">Se usa para confirmar trabajos en el Calendario. Se puede dejar en blanco y asignarlo después.</div>
+                @error('pin') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
+
             <div class="d-flex gap-2 mt-3">
                 <button type="submit" class="btn btn-ac-primary">
                     <i class="bi bi-save me-1"></i> Guardar

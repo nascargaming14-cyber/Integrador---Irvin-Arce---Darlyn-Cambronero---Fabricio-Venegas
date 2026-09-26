@@ -105,6 +105,10 @@
             </div>
             <div class="modal-body">
 
+                <div id="lockedBanner" class="alert alert-secondary d-none">
+                    <i class="bi bi-lock-fill"></i> Este trabajo ya está <strong>confirmado y completado</strong>. Solo se puede ver, no editar.
+                </div>
+
                 <!-- Datos del trabajo -->
                 <form id="jobForm" method="POST">
                     @csrf
@@ -119,24 +123,34 @@
                             <input type="text" name="location" id="jobLocation" class="form-control form-control-sm">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label small">Área (m²)</label>
-                            <input type="number" step="0.01" name="area_m2" id="jobArea" class="form-control form-control-sm">
+                            <label class="form-label small">Cantidad</label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" step="0.01" name="area_m2" id="jobArea" class="form-control form-control-sm">
+                                <span class="input-group-text" id="jobAreaUnit">—</span>
+                            </div>
                         </div>
                         <div class="col-md-8">
                             <label class="form-label small">Material (producto)</label>
                             <select name="product_id" id="jobMaterial" class="form-select form-select-sm">
                                 <option value="">Seleccione un producto...</option>
                                 @foreach($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->product_name }} (stock: {{ $product->stock }})</option>
+                                    <option value="{{ $product->id }}" data-unit="{{ $product->unitMeasurement->unit_name ?? '' }}">{{ $product->product_name }} (stock: {{ $product->stock }})</option>
                                 @endforeach
                             </select>
-                            <div class="form-text" style="font-size: 0.7rem;">
-                                Al confirmar el trabajo se descuentan del stock los m² indicados arriba. Si se desconfirma o se elimina, se devuelven.
-                            </div>
                         </div>
                         <div class="col-12">
                             <label class="form-label small">Notas</label>
                             <textarea name="notes" id="jobNotes" class="form-control form-control-sm" rows="2"></textarea>
+                        </div>
+                        <div class="col-12" id="moveWrap" style="display:none;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="moveToggle">
+                                <label class="form-check-label small" for="moveToggle">Mover este trabajo a otro día</label>
+                            </div>
+                            <div class="mt-1 d-none" id="moveDateWrap" style="max-width: 220px;">
+                                <input type="date" name="move_to_date" id="moveDateInput" class="form-control form-control-sm">
+                                <div class="form-text" style="font-size: 0.7rem;">Se mueve con el cliente, cantidad, material y notas intactos. Si esa cuadrilla ya tiene un trabajo ese día, no se podrá mover.</div>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-3">
@@ -190,12 +204,17 @@
                         <div class="row g-2">
                             <div class="col-md-6">
                                 <label class="form-label small">Agente</label>
-                                <select name="agent_id" id="confirmAgent" class="form-select form-select-sm" required>
-                                    <option value="" disabled selected>Seleccione...</option>
-                                    @foreach($agents as $agent)
-                                        <option value="{{ $agent->id }}">{{ $agent->user_name }}</option>
-                                    @endforeach
-                                </select>
+                                @if($isAdmin)
+                                    <select name="agent_id" id="confirmAgent" class="form-select form-select-sm" required>
+                                        <option value="" disabled selected>Seleccione...</option>
+                                        @foreach($agents as $agent)
+                                            <option value="{{ $agent->id }}">{{ $agent->user_name }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <input type="text" class="form-control form-control-sm" value="{{ auth()->user()->user_name }}" disabled>
+                                    <input type="hidden" name="agent_id" value="{{ auth()->id() }}">
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small">PIN</label>
@@ -234,10 +253,40 @@
     const statusForm    = document.getElementById('statusForm');
     const confirmForm   = document.getElementById('confirmForm');
     const deleteBtn     = document.getElementById('jobDeleteBtn');
+    const jobMaterial   = document.getElementById('jobMaterial');
+    const jobAreaUnit   = document.getElementById('jobAreaUnit');
+    const moveWrap      = document.getElementById('moveWrap');
+    const moveToggle    = document.getElementById('moveToggle');
+    const moveDateWrap  = document.getElementById('moveDateWrap');
+    const moveDateInput = document.getElementById('moveDateInput');
+    const lockedBanner  = document.getElementById('lockedBanner');
+
+    // Actualiza la etiqueta de unidad (m², saco, unidad, etc.) según el producto elegido
+    function updateAreaUnit() {
+        const opt = jobMaterial.options[jobMaterial.selectedIndex];
+        jobAreaUnit.textContent = (opt && opt.dataset.unit) ? opt.dataset.unit : '—';
+    }
+    jobMaterial.addEventListener('change', updateAreaUnit);
+
+    moveToggle.addEventListener('change', () => {
+        moveDateWrap.classList.toggle('d-none', !moveToggle.checked);
+    });
+
+    // Habilita/deshabilita todos los campos y botones del modal
+    function setFormsLocked(locked) {
+        [jobForm, statusForm, confirmForm].forEach(form => {
+            form.querySelectorAll('input, select, textarea, button').forEach(el => {
+                el.disabled = locked;
+            });
+        });
+        deleteBtn.disabled = locked;
+        lockedBanner.classList.toggle('d-none', !locked);
+    }
 
     document.querySelectorAll('.slot-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            const jobId = btn.dataset.jobId;
+            const jobId  = btn.dataset.jobId;
+            const locked = jobId && btn.dataset.confirmed === '1' && btn.dataset.completed === '1';
 
             document.getElementById('jobModalTitle').textContent =
                 'Cuadrilla ' + btn.dataset.crewCode + (btn.dataset.crewName ? ' — ' + btn.dataset.crewName : '') +
@@ -246,8 +295,14 @@
             document.getElementById('jobClient').value   = btn.dataset.client || '';
             document.getElementById('jobLocation').value = btn.dataset.location || '';
             document.getElementById('jobArea').value     = btn.dataset.area || '';
-            document.getElementById('jobMaterial').value = btn.dataset.material || '';
+            jobMaterial.value = btn.dataset.productId || '';
+            updateAreaUnit();
             document.getElementById('jobNotes').value    = btn.dataset.notes || '';
+
+            // Reiniciar el bloque de "mover a otro día"
+            moveToggle.checked = false;
+            moveDateWrap.classList.add('d-none');
+            moveDateInput.value = btn.dataset.date || '';
 
             // Campos ocultos necesarios para crear (solo si es trabajo nuevo)
             [...jobForm.querySelectorAll('input[name="crew_id"], input[name="work_date"]')].forEach(el => el.remove());
@@ -266,8 +321,13 @@
                 jobForm.action = updateUrlTpl.replace('__ID__', jobId);
                 jobFormMethod.value = 'PUT';
 
+                moveWrap.style.display = '';
+
                 statusForm.action = statusUrlTpl.replace('__ID__', jobId);
                 document.getElementById('statusSelect').value = btn.dataset.completed || '';
+            const completadoOption = document.querySelector('#statusSelect option[value="1"]');
+            completadoOption.disabled = btn.dataset.confirmed !== '1';
+            completadoOption.title = completadoOption.disabled ? 'Primero debes confirmar el trabajo' : '';
                 statusSection.classList.remove('d-none');
 
                 confirmForm.action = confirmUrlTpl.replace('__ID__', jobId);
@@ -292,12 +352,14 @@
             } else {
                 jobForm.action = storeUrl;
                 jobFormMethod.value = 'POST';
+                moveWrap.style.display = 'none';
                 statusSection.classList.add('d-none');
                 confirmSection.classList.add('d-none');
                 confirmDivider.classList.add('d-none');
                 deleteBtn.classList.add('d-none');
             }
 
+            setFormsLocked(locked);
             jobModal.show();
         });
     });

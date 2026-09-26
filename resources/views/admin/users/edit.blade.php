@@ -78,6 +78,15 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">PIN de confirmación (4 dígitos)</label>
+                <input type="password" name="pin" inputmode="numeric" pattern="\d{4}" maxlength="4"
+                       class="form-control @error('pin') is-invalid @enderror"
+                       placeholder="{{ $user->pin ? '•••• (dejar en blanco para no cambiar)' : 'Sin PIN asignado' }}">
+                <div class="form-text">Por seguridad no se muestra el PIN actual. Escribe uno nuevo solo si quieres cambiarlo.</div>
+                @error('pin') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
+
             <div class="d-flex gap-2 mt-3">
                 <button type="submit" class="btn btn-ac-primary">
                     <i class="bi bi-arrow-repeat me-1"></i> Actualizar

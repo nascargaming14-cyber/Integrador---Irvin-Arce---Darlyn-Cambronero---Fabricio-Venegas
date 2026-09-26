@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserManagementController extends Controller
@@ -37,9 +38,16 @@ class UserManagementController extends Controller
             'email'     => 'required|email|max:150|unique:users,email',
             'telephone' => 'nullable|string|max:20|unique:users,telephone',
             'password'  => 'required|string|min:8|confirmed',
+            'pin'       => 'nullable|digits:4',
             'role_id'   => 'required|integer|exists:roles,id',
             'status_id' => 'required|integer|exists:status,id',
         ]);
+
+        if (! empty($validated['pin'])) {
+            $validated['pin'] = Hash::make($validated['pin']);
+        } else {
+            unset($validated['pin']);
+        }
 
         User::create($validated);
 
@@ -68,12 +76,21 @@ class UserManagementController extends Controller
             'email'     => 'required|email|max:150|unique:users,email,' . $id,
             'telephone' => 'nullable|string|max:20|unique:users,telephone,' . $id,
             'password'  => 'nullable|string|min:8|confirmed',
+            'pin'       => 'nullable|digits:4',
             'role_id'   => 'required|integer|exists:roles,id',
             'status_id' => 'required|integer|exists:status,id',
         ]);
 
+        // Solo actualizar contraseña si se envía
         if (empty($validated['password'])) {
             unset($validated['password']);
+        }
+
+        // Solo actualizar el PIN si se escribió uno nuevo (si no, se deja el que ya tenía)
+        if (! empty($validated['pin'])) {
+            $validated['pin'] = Hash::make($validated['pin']);
+        } else {
+            unset($validated['pin']);
         }
 
         $user->update($validated);

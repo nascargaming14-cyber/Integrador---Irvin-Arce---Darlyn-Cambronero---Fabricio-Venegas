@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
@@ -26,16 +27,21 @@ class CalendarController extends Controller
 
         $crews = Crew::where('active', true)->orderBy('sort_order')->get();
 
-        $jobs = CalendarJob::with(['crew', 'confirmedBy'])
+        $jobs = CalendarJob::with(['crew', 'product', 'confirmedBy'])
             ->whereBetween('work_date', [$start->toDateString(), $end->toDateString()])
             ->get()
             ->groupBy(fn ($job) => $job->work_date->toDateString());
 
-        // Usuarios para el combo de "Agente" del cuadro de Confirmación
-        $agents = User::orderBy('user_name')->get();
+        // Agente(s) para el cuadro de Confirmación:
+        // el Administrador puede elegir entre todos; cualquier otro rol solo se confirma a sí mismo.
+        /** @var \App\Models\User $currentUser */
+        /** @disregard P1013 */
+        $currentUser = auth()->user();
+        $isAdmin = optional($currentUser->role)->role_name === 'Administrador';
+        $agents  = $isAdmin ? User::orderBy('user_name')->get() : collect([$currentUser]);
 
-        // Productos guardados, para el combo de "Material"
-        $products = Product::orderBy('product_name')->get();
+        // Productos guardados, para el combo de "Material" (con su unidad de medida)
+        $products = Product::with('unitMeasurement')->orderBy('product_name')->get();
 
         // Cuadrícula de semanas completas (lunes a domingo) que cubren el mes
         $gridStart = $start->copy()->startOfWeek(Carbon::MONDAY);
@@ -52,7 +58,7 @@ class CalendarController extends Controller
             $weeks[] = $week;
         }
 
-        return view('calendar.index', compact('crews', 'jobs', 'agents', 'products', 'start', 'end', 'month', 'weeks'));
+        return view('calendar.index', compact('crews', 'jobs', 'agents', 'products', 'start', 'end', 'month', 'weeks', 'isAdmin'));
     }
 
     /**
@@ -61,13 +67,13 @@ class CalendarController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'crew_id'       => 'required|integer|exists:crews,id',
-            'work_date'     => 'required|date',
-            'client_name'   => 'required|string|max:150',
-            'location'      => 'nullable|string|max:150',
-            'area_m2'       => 'nullable|numeric|min:0',
-            'material_type' => 'nullable|string|max:100',
-            'notes'         => 'nullable|string',
+            'crew_id'     => 'required|integer|exists:crews,id',
+            'work_date'   => 'required|date',
+            'client_name' => 'required|string|max:150',
+            'location'    => 'nullable|string|max:150',
+            'area_m2'     => 'nullable|numeric|min:0',
+            'product_id'  => 'nullable|integer|exists:products,id',
+            'notes'       => 'nullable|string',
         ]);
 
         // Una cuadrilla solo puede tener un trabajo por día (ver migración: unique crew_id+work_date)
@@ -79,7 +85,18 @@ class CalendarController extends Controller
             return back()->with('error', 'Esa cuadrilla ya tiene un trabajo asignado ese día.');
         }
 
-        CalendarJob::create($validated);
+        DB::transaction(function () use ($validated) {
+            $job = CalendarJob::create($validated);
+
+            // Pendiente por defecto: se rebaja de una vez; se devuelve solo si luego se marca "No completado"
+            if ($job->product_id && $job->area_m2) {
+                $product = Product::find($job->product_id);
+                if ($product) {
+                    $product->decrement('stock', $job->area_m2);
+                }
+                $job->update(['stock_deducted' => true]);
+            }
+        });
 
         return redirect()
             ->route('calendar.index', ['month' => Carbon::parse($validated['work_date'])->format('Y-m')])
@@ -91,15 +108,60 @@ class CalendarController extends Controller
      */
     public function update(Request $request, CalendarJob $calendarJob): RedirectResponse
     {
+        // Si el agente ya confirmó Y el trabajo quedó completado, ya no se puede tocar nada.
+        if ($calendarJob->confirmed && $calendarJob->completed === true) {
+            return back()->with('error', 'Este trabajo ya está confirmado y completado; no se puede editar.');
+        }
+
         $validated = $request->validate([
-            'client_name'   => 'required|string|max:150',
-            'location'      => 'nullable|string|max:150',
-            'area_m2'       => 'nullable|numeric|min:0',
-            'material_type' => 'nullable|string|max:100',
-            'notes'         => 'nullable|string',
+            'client_name'  => 'required|string|max:150',
+            'location'     => 'nullable|string|max:150',
+            'area_m2'      => 'nullable|numeric|min:0',
+            'product_id'   => 'nullable|integer|exists:products,id',
+            'notes'        => 'nullable|string',
+            'move_to_date' => 'nullable|date',
         ]);
 
-        $calendarJob->update($validated);
+        // Mover el trabajo a otro día: se valida que la cuadrilla esté libre ese día.
+        $moveToDate = $validated['move_to_date'] ?? null;
+        unset($validated['move_to_date']);
+
+        if ($moveToDate && $moveToDate !== $calendarJob->work_date->toDateString()) {
+            $conflict = CalendarJob::where('crew_id', $calendarJob->crew_id)
+                ->where('work_date', $moveToDate)
+                ->where('id', '!=', $calendarJob->id)
+                ->exists();
+
+            if ($conflict) {
+                return back()->with('error', 'Esa cuadrilla ya tiene un trabajo asignado ese día. No se pudo mover.');
+            }
+
+            $validated['work_date'] = $moveToDate;
+        }
+
+        DB::transaction(function () use ($calendarJob, $validated) {
+            // Si ya tenía stock rebajado, primero se le devuelve al producto/cantidad viejos
+            if ($calendarJob->stock_deducted && $calendarJob->product_id && $calendarJob->area_m2) {
+                $oldProduct = Product::find($calendarJob->product_id);
+                if ($oldProduct) {
+                    $oldProduct->increment('stock', $calendarJob->area_m2);
+                }
+            }
+
+            $calendarJob->update($validated);
+
+            // Si el trabajo no está cancelado ("No completado"), se vuelve a rebajar con los datos nuevos
+            if ($calendarJob->completed !== false && $calendarJob->product_id && $calendarJob->area_m2) {
+                $newProduct = Product::find($calendarJob->product_id);
+                if ($newProduct) {
+                    $newProduct->decrement('stock', $calendarJob->area_m2);
+                }
+                $calendarJob->stock_deducted = true;
+            } else {
+                $calendarJob->stock_deducted = false;
+            }
+            $calendarJob->save();
+        });
 
         return redirect()
             ->route('calendar.index', ['month' => $calendarJob->work_date->format('Y-m')])
@@ -112,12 +174,46 @@ class CalendarController extends Controller
      */
     public function updateStatus(Request $request, CalendarJob $calendarJob): RedirectResponse
     {
+        if ($calendarJob->confirmed && $calendarJob->completed === true) {
+            return back()->with('error', 'Este trabajo ya está confirmado y completado; no se puede modificar.');
+        }
+
         $validated = $request->validate([
             // 1 = completado, 0 = no completado, vacío/ausente = pendiente
             'completed' => 'nullable|boolean',
         ]);
 
-        $calendarJob->update(['completed' => $validated['completed'] ?? null]);
+        $newCompleted = $validated['completed'] ?? null;
+
+        if ($newCompleted === true && ! $calendarJob->confirmed) {
+            return back()->with('error', 'Primero debes confirmar el trabajo (cuadro de Confirmación) antes de marcarlo como Completado.');
+        }
+
+        DB::transaction(function () use ($calendarJob, $newCompleted) {
+            // Se marca "No completado" (cancelado) y ya tenía stock rebajado: se devuelve.
+            $isCancelling = ($newCompleted === false) && $calendarJob->stock_deducted;
+
+            // Se marca Pendiente o Completado y NO tenía stock rebajado (venía cancelado): se vuelve a rebajar.
+            $isReactivating = ($newCompleted !== false) && ! $calendarJob->stock_deducted
+                && $calendarJob->product_id && $calendarJob->area_m2;
+
+            if ($isCancelling) {
+                $product = Product::find($calendarJob->product_id);
+                if ($product) {
+                    $product->increment('stock', $calendarJob->area_m2);
+                }
+                $calendarJob->stock_deducted = false;
+            } elseif ($isReactivating) {
+                $product = Product::find($calendarJob->product_id);
+                if ($product) {
+                    $product->decrement('stock', $calendarJob->area_m2);
+                }
+                $calendarJob->stock_deducted = true;
+            }
+
+            $calendarJob->completed = $newCompleted;
+            $calendarJob->save();
+        });
 
         return back()->with('success', 'Estado actualizado.');
     }
@@ -128,6 +224,10 @@ class CalendarController extends Controller
      */
     public function confirm(Request $request, CalendarJob $calendarJob): RedirectResponse
     {
+        if ($calendarJob->confirmed && $calendarJob->completed === true) {
+            return back()->with('error', 'Este trabajo ya está confirmado y completado; no se puede modificar.');
+        }
+
         $validated = $request->validate([
             'confirmed' => 'required|boolean',
             'agent_id'  => 'required|integer|exists:users,id',
@@ -150,11 +250,24 @@ class CalendarController extends Controller
     }
 
     /**
-     * Elimina un trabajo de la pizarra.
+     * Elimina un trabajo de la pizarra. Si ya se había descontado stock
+     * (trabajo confirmado), se le devuelve el producto antes de borrarlo.
      */
     public function destroy(CalendarJob $calendarJob): RedirectResponse
     {
+        if ($calendarJob->confirmed && $calendarJob->completed === true) {
+            return back()->with('error', 'Este trabajo ya está confirmado y completado; no se puede eliminar.');
+        }
+
         $month = $calendarJob->work_date->format('Y-m');
+
+        if ($calendarJob->stock_deducted && $calendarJob->product_id) {
+            $product = Product::find($calendarJob->product_id);
+            if ($product) {
+                $product->increment('stock', $calendarJob->area_m2);
+            }
+        }
+
         $calendarJob->delete();
 
         return redirect()
