@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -15,12 +14,12 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-
+        
 
         \DB::table('products')->delete();
-
+        
         \DB::table('products')->insert(array (
-            0 =>
+            0 => 
             array (
                 'id' => 35,
                 'barcode' => 'CC-RJ',
@@ -35,7 +34,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:34:13',
                 'updated_at' => '2026-08-11 21:18:08',
             ),
-            1 =>
+            1 => 
             array (
                 'id' => 28,
                 'barcode' => 'J-CI',
@@ -50,7 +49,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:24:16',
                 'updated_at' => '2026-08-11 20:24:16',
             ),
-            2 =>
+            2 => 
             array (
                 'id' => 29,
                 'barcode' => 'J-CIB',
@@ -65,7 +64,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:25:14',
                 'updated_at' => '2026-08-11 20:25:14',
             ),
-            3 =>
+            3 => 
             array (
                 'id' => 30,
                 'barcode' => 'J-CIP',
@@ -80,7 +79,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:27:44',
                 'updated_at' => '2026-08-11 20:27:44',
             ),
-            4 =>
+            4 => 
             array (
                 'id' => 15,
                 'barcode' => 'E-40',
@@ -95,7 +94,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-07-19 19:55:24',
                 'updated_at' => '2026-08-11 21:18:48',
             ),
-            5 =>
+            5 => 
             array (
                 'id' => 31,
                 'barcode' => 'J-GP',
@@ -110,7 +109,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:28:45',
                 'updated_at' => '2026-08-11 20:28:45',
             ),
-            6 =>
+            6 => 
             array (
                 'id' => 32,
                 'barcode' => 'CC-R',
@@ -125,7 +124,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:30:48',
                 'updated_at' => '2026-08-11 20:30:48',
             ),
-            7 =>
+            7 => 
             array (
                 'id' => 33,
                 'barcode' => 'CC-A',
@@ -140,7 +139,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:31:35',
                 'updated_at' => '2026-08-11 20:31:35',
             ),
-            8 =>
+            8 => 
             array (
                 'id' => 17,
                 'barcode' => 'T-25-MM',
@@ -155,7 +154,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 00:10:10',
                 'updated_at' => '2026-08-19 15:47:21',
             ),
-            9 =>
+            9 => 
             array (
                 'id' => 34,
                 'barcode' => 'CC-N',
@@ -170,7 +169,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:32:49',
                 'updated_at' => '2026-08-11 20:32:49',
             ),
-            10 =>
+            10 => 
             array (
                 'id' => 23,
                 'barcode' => 'J-XPM',
@@ -185,7 +184,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:16:56',
                 'updated_at' => '2026-08-24 20:36:18',
             ),
-            11 =>
+            11 => 
             array (
                 'id' => 4,
                 'barcode' => 'CI-LDH',
@@ -200,7 +199,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-24 20:36:18',
             ),
-            12 =>
+            12 => 
             array (
                 'id' => 16,
                 'barcode' => 'E-30',
@@ -215,7 +214,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-07-29 17:44:53',
                 'updated_at' => '2026-08-11 21:12:43',
             ),
-            13 =>
+            13 => 
             array (
                 'id' => 36,
                 'barcode' => 'CC-B',
@@ -230,7 +229,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:35:42',
                 'updated_at' => '2026-08-11 20:35:42',
             ),
-            14 =>
+            14 => 
             array (
                 'id' => 6,
                 'barcode' => 'CI-S',
@@ -245,7 +244,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 19:51:09',
             ),
-            15 =>
+            15 => 
             array (
                 'id' => 39,
                 'barcode' => 'AD-CC',
@@ -260,7 +259,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:40:57',
                 'updated_at' => '2026-08-11 20:40:57',
             ),
-            16 =>
+            16 => 
             array (
                 'id' => 40,
                 'barcode' => 'AD-HP',
@@ -275,7 +274,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:46:05',
                 'updated_at' => '2026-08-11 20:46:05',
             ),
-            17 =>
+            17 => 
             array (
                 'id' => 9,
                 'barcode' => 'F-TN',
@@ -290,7 +289,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 20:00:38',
             ),
-            18 =>
+            18 => 
             array (
                 'id' => 41,
                 'barcode' => 'AD-MF',
@@ -305,7 +304,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:48:17',
                 'updated_at' => '2026-08-11 20:48:17',
             ),
-            19 =>
+            19 => 
             array (
                 'id' => 10,
                 'barcode' => 'F-HJB',
@@ -320,7 +319,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 20:01:56',
             ),
-            20 =>
+            20 => 
             array (
                 'id' => 42,
                 'barcode' => 'AD-MM',
@@ -335,7 +334,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:49:08',
                 'updated_at' => '2026-08-11 20:49:08',
             ),
-            21 =>
+            21 => 
             array (
                 'id' => 11,
                 'barcode' => 'F-HP',
@@ -350,7 +349,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 20:03:22',
             ),
-            22 =>
+            22 => 
             array (
                 'id' => 21,
                 'barcode' => 'F-FP',
@@ -365,7 +364,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:11:41',
                 'updated_at' => '2026-08-11 20:11:41',
             ),
-            23 =>
+            23 => 
             array (
                 'id' => 22,
                 'barcode' => 'F-FT',
@@ -380,7 +379,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:12:37',
                 'updated_at' => '2026-08-11 20:12:37',
             ),
-            24 =>
+            24 => 
             array (
                 'id' => 43,
                 'barcode' => 'MP-MN1x1',
@@ -395,7 +394,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:52:39',
                 'updated_at' => '2026-08-11 20:52:39',
             ),
-            25 =>
+            25 => 
             array (
                 'id' => 44,
                 'barcode' => 'MP-MN1.8x1.8',
@@ -410,7 +409,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:54:20',
                 'updated_at' => '2026-08-11 20:56:33',
             ),
-            26 =>
+            26 => 
             array (
                 'id' => 46,
                 'barcode' => 'MP-MN3.5x3.5',
@@ -425,7 +424,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:58:52',
                 'updated_at' => '2026-08-11 20:58:52',
             ),
-            27 =>
+            27 => 
             array (
                 'id' => 47,
                 'barcode' => 'MP-MPAD3x3',
@@ -440,7 +439,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:00:15',
                 'updated_at' => '2026-08-11 21:00:15',
             ),
-            28 =>
+            28 => 
             array (
                 'id' => 45,
                 'barcode' => 'MP-MN3x3',
@@ -455,7 +454,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:55:48',
                 'updated_at' => '2026-08-11 21:00:41',
             ),
-            29 =>
+            29 => 
             array (
                 'id' => 48,
                 'barcode' => 'MP-MT',
@@ -470,7 +469,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 21:01:46',
                 'updated_at' => '2026-08-11 21:01:46',
             ),
-            30 =>
+            30 => 
             array (
                 'id' => 8,
                 'barcode' => 'F-TR',
@@ -485,22 +484,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 21:23:00',
             ),
-            31 =>
-            array (
-                'id' => 1,
-                'barcode' => 'D-PS',
-                'product_name' => 'Piedra',
-                'stock' => '257.00',
-                'minimum_stock' => '50.00',
-                'price_sale' => '4000.00',
-                'price_buy' => '3000.00',
-                'sub_category_id' => 44,
-                'unit_id' => 30,
-                'status_id' => 4,
-                'created_at' => '2026-06-15 23:32:54',
-                'updated_at' => '2026-08-11 21:19:41',
-            ),
-            32 =>
+            31 => 
             array (
                 'id' => 27,
                 'barcode' => 'J-XPE',
@@ -515,7 +499,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:21:43',
                 'updated_at' => '2026-08-11 21:15:38',
             ),
-            33 =>
+            32 => 
             array (
                 'id' => 2,
                 'barcode' => 'D-LU',
@@ -530,7 +514,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 21:19:41',
             ),
-            34 =>
+            33 => 
             array (
                 'id' => 13,
                 'barcode' => 'F-HM',
@@ -545,7 +529,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-07-18 23:45:41',
                 'updated_at' => '2026-08-11 21:23:00',
             ),
-            35 =>
+            34 => 
             array (
                 'id' => 5,
                 'barcode' => 'CI-CPVC',
@@ -560,7 +544,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-19 14:29:09',
             ),
-            36 =>
+            35 => 
             array (
                 'id' => 37,
                 'barcode' => 'CC-AM',
@@ -575,7 +559,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:37:35',
                 'updated_at' => '2026-08-24 20:44:39',
             ),
-            37 =>
+            36 => 
             array (
                 'id' => 18,
                 'barcode' => 'F-FS',
@@ -590,7 +574,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:07:51',
                 'updated_at' => '2026-08-19 14:29:14',
             ),
-            38 =>
+            37 => 
             array (
                 'id' => 7,
                 'barcode' => 'F-TM',
@@ -605,7 +589,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 21:16:35',
             ),
-            39 =>
+            38 => 
             array (
                 'id' => 25,
                 'barcode' => 'J-XPP',
@@ -620,7 +604,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:19:23',
                 'updated_at' => '2026-08-11 21:26:31',
             ),
-            40 =>
+            39 => 
             array (
                 'id' => 26,
                 'barcode' => 'J-XPD',
@@ -635,7 +619,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:20:28',
                 'updated_at' => '2026-08-11 21:16:35',
             ),
-            41 =>
+            40 => 
             array (
                 'id' => 19,
                 'barcode' => 'F-FF',
@@ -650,7 +634,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:08:49',
                 'updated_at' => '2026-08-24 20:44:39',
             ),
-            42 =>
+            41 => 
             array (
                 'id' => 38,
                 'barcode' => 'CC-M',
@@ -665,7 +649,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:38:17',
                 'updated_at' => '2026-08-11 21:10:17',
             ),
-            43 =>
+            42 => 
             array (
                 'id' => 24,
                 'barcode' => 'J-PT30',
@@ -680,7 +664,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:18:19',
                 'updated_at' => '2026-08-11 21:17:36',
             ),
-            44 =>
+            43 => 
             array (
                 'id' => 20,
                 'barcode' => 'F-FVS',
@@ -695,7 +679,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-11 20:09:39',
                 'updated_at' => '2026-08-19 14:29:22',
             ),
-            45 =>
+            44 => 
             array (
                 'id' => 3,
                 'barcode' => 'D-AU',
@@ -710,7 +694,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-11 21:26:53',
             ),
-            46 =>
+            45 => 
             array (
                 'id' => 14,
                 'barcode' => 'F-TA',
@@ -725,7 +709,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-07-19 01:13:06',
                 'updated_at' => '2026-08-11 21:24:15',
             ),
-            47 =>
+            46 => 
             array (
                 'id' => 49,
                 'barcode' => 'ERROR',
@@ -740,8 +724,23 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => '2026-08-19 14:21:32',
                 'updated_at' => '2026-08-19 14:31:47',
             ),
+            47 => 
+            array (
+                'id' => 1,
+                'barcode' => 'D-PS',
+                'product_name' => 'PiedraP',
+                'stock' => '257.00',
+                'minimum_stock' => '50.00',
+                'price_sale' => '4000.00',
+                'price_buy' => '3000.00',
+                'sub_category_id' => 44,
+                'unit_id' => 30,
+                'status_id' => 4,
+                'created_at' => '2026-06-15 23:32:54',
+                'updated_at' => '2026-09-25 20:56:16',
+            ),
         ));
-
-
+        
+        
     }
 }

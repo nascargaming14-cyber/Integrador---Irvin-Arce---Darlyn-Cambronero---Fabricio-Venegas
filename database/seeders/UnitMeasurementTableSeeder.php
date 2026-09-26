@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UnitMeasurementTableSeeder extends Seeder
 {
@@ -15,12 +14,12 @@ class UnitMeasurementTableSeeder extends Seeder
      */
     public function run()
     {
+        
 
-
-        DB::table('unit_measurement')->delete();
-
-        DB::table('unit_measurement')->insert(array (
-            0 =>
+        \DB::table('unit_measurement')->delete();
+        
+        \DB::table('unit_measurement')->insert(array (
+            0 => 
             array (
                 'id' => 1,
                 'unit_name' => 'Miligramo',
@@ -28,7 +27,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            1 =>
+            1 => 
             array (
                 'id' => 2,
                 'unit_name' => 'Gramo',
@@ -36,7 +35,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            2 =>
+            2 => 
             array (
                 'id' => 3,
                 'unit_name' => 'Kilogramo',
@@ -44,7 +43,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            3 =>
+            3 => 
             array (
                 'id' => 4,
                 'unit_name' => 'Tonelada',
@@ -52,7 +51,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            4 =>
+            4 => 
             array (
                 'id' => 5,
                 'unit_name' => 'Libra',
@@ -60,7 +59,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            5 =>
+            5 => 
             array (
                 'id' => 6,
                 'unit_name' => 'Onza',
@@ -68,7 +67,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            6 =>
+            6 => 
             array (
                 'id' => 7,
                 'unit_name' => 'Mililitro',
@@ -76,7 +75,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            7 =>
+            7 => 
             array (
                 'id' => 8,
                 'unit_name' => 'Litro',
@@ -84,7 +83,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            8 =>
+            8 => 
             array (
                 'id' => 9,
                 'unit_name' => 'Galón',
@@ -92,7 +91,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            9 =>
+            9 => 
             array (
                 'id' => 10,
                 'unit_name' => 'Centilitro',
@@ -100,7 +99,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            10 =>
+            10 => 
             array (
                 'id' => 11,
                 'unit_name' => 'Barril',
@@ -108,7 +107,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            11 =>
+            11 => 
             array (
                 'id' => 12,
                 'unit_name' => 'Milímetro',
@@ -116,7 +115,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            12 =>
+            12 => 
             array (
                 'id' => 13,
                 'unit_name' => 'Centímetro',
@@ -124,7 +123,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            13 =>
+            13 => 
             array (
                 'id' => 14,
                 'unit_name' => 'Metro',
@@ -132,7 +131,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            14 =>
+            14 => 
             array (
                 'id' => 15,
                 'unit_name' => 'Kilómetro',
@@ -140,7 +139,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            15 =>
+            15 => 
             array (
                 'id' => 16,
                 'unit_name' => 'Pulgada',
@@ -148,7 +147,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            16 =>
+            16 => 
             array (
                 'id' => 17,
                 'unit_name' => 'Pie',
@@ -156,7 +155,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            17 =>
+            17 => 
             array (
                 'id' => 18,
                 'unit_name' => 'Yarda',
@@ -164,7 +163,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            18 =>
+            18 => 
             array (
                 'id' => 19,
                 'unit_name' => 'Metro cuadrado',
@@ -172,7 +171,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            19 =>
+            19 => 
             array (
                 'id' => 20,
                 'unit_name' => 'Centímetro cuadrado',
@@ -180,7 +179,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            20 =>
+            20 => 
             array (
                 'id' => 21,
                 'unit_name' => 'Hectárea',
@@ -188,7 +187,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            21 =>
+            21 => 
             array (
                 'id' => 22,
                 'unit_name' => 'Pie cuadrado',
@@ -196,7 +195,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            22 =>
+            22 => 
             array (
                 'id' => 23,
                 'unit_name' => 'Unidad',
@@ -204,7 +203,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            23 =>
+            23 => 
             array (
                 'id' => 24,
                 'unit_name' => 'Par',
@@ -212,7 +211,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            24 =>
+            24 => 
             array (
                 'id' => 25,
                 'unit_name' => 'Docena',
@@ -220,7 +219,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            25 =>
+            25 => 
             array (
                 'id' => 26,
                 'unit_name' => 'Caja',
@@ -228,7 +227,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            26 =>
+            26 => 
             array (
                 'id' => 27,
                 'unit_name' => 'Paquete',
@@ -236,7 +235,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            27 =>
+            27 => 
             array (
                 'id' => 28,
                 'unit_name' => 'Fardo',
@@ -244,7 +243,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            28 =>
+            28 => 
             array (
                 'id' => 29,
                 'unit_name' => 'Bulto',
@@ -252,7 +251,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            29 =>
+            29 => 
             array (
                 'id' => 30,
                 'unit_name' => 'Saco',
@@ -260,7 +259,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            30 =>
+            30 => 
             array (
                 'id' => 31,
                 'unit_name' => 'Rollo',
@@ -268,7 +267,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            31 =>
+            31 => 
             array (
                 'id' => 32,
                 'unit_name' => 'Bolsa',
@@ -276,7 +275,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            32 =>
+            32 => 
             array (
                 'id' => 33,
                 'unit_name' => 'Paleta',
@@ -284,7 +283,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            33 =>
+            33 => 
             array (
                 'id' => 34,
                 'unit_name' => 'Contenedor',
@@ -292,7 +291,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            34 =>
+            34 => 
             array (
                 'id' => 35,
                 'unit_name' => 'Juego',
@@ -300,7 +299,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            35 =>
+            35 => 
             array (
                 'id' => 36,
                 'unit_name' => 'Kit',
@@ -308,7 +307,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            36 =>
+            36 => 
             array (
                 'id' => 37,
                 'unit_name' => 'Lote',
@@ -316,7 +315,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            37 =>
+            37 => 
             array (
                 'id' => 38,
                 'unit_name' => 'Hora',
@@ -324,7 +323,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            38 =>
+            38 => 
             array (
                 'id' => 39,
                 'unit_name' => 'Día',
@@ -332,7 +331,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            39 =>
+            39 => 
             array (
                 'id' => 40,
                 'unit_name' => 'Semana',
@@ -340,7 +339,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            40 =>
+            40 => 
             array (
                 'id' => 41,
                 'unit_name' => 'Mes',
@@ -348,7 +347,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            41 =>
+            41 => 
             array (
                 'id' => 42,
                 'unit_name' => 'Kilovatio',
@@ -356,7 +355,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            42 =>
+            42 => 
             array (
                 'id' => 43,
                 'unit_name' => 'Kilovatio-hora',
@@ -364,7 +363,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            43 =>
+            43 => 
             array (
                 'id' => 44,
                 'unit_name' => 'Megabyte',
@@ -372,7 +371,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            44 =>
+            44 => 
             array (
                 'id' => 45,
                 'unit_name' => 'Gigabyte',
@@ -380,7 +379,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            45 =>
+            45 => 
             array (
                 'id' => 46,
                 'unit_name' => 'Porción',
@@ -388,7 +387,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            46 =>
+            46 => 
             array (
                 'id' => 47,
                 'unit_name' => 'Servicio',
@@ -396,7 +395,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            47 =>
+            47 => 
             array (
                 'id' => 48,
                 'unit_name' => 'Pieza',
@@ -404,7 +403,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            48 =>
+            48 => 
             array (
                 'id' => 49,
                 'unit_name' => 'Tubo',
@@ -412,7 +411,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            49 =>
+            49 => 
             array (
                 'id' => 50,
                 'unit_name' => 'Frasco',
@@ -420,7 +419,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            50 =>
+            50 => 
             array (
                 'id' => 51,
                 'unit_name' => 'Lata',
@@ -428,7 +427,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            51 =>
+            51 => 
             array (
                 'id' => 52,
                 'unit_name' => 'Ampolla',
@@ -436,7 +435,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:52',
                 'updated_at' => '2026-06-15 23:32:52',
             ),
-            52 =>
+            52 => 
             array (
                 'id' => 53,
                 'unit_name' => 'Metro Lineal',
@@ -445,7 +444,7 @@ class UnitMeasurementTableSeeder extends Seeder
                 'updated_at' => '2026-08-11 19:24:37',
             ),
         ));
-
-
+        
+        
     }
 }

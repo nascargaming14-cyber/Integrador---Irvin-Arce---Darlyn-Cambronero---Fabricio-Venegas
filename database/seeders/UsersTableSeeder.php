@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -15,12 +14,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        
 
-
-        DB::table('users')->delete();
-
-        DB::table('users')->insert(array (
-            0 =>
+        \DB::table('users')->delete();
+        
+        \DB::table('users')->insert(array (
+            0 => 
             array (
                 'id' => 1,
                 'user_name' => 'Administrador',
@@ -34,7 +33,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-06-15 23:32:54',
             ),
-            1 =>
+            1 => 
             array (
                 'id' => 2,
                 'user_name' => 'Ventas',
@@ -48,21 +47,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-07-26 04:10:53',
             ),
-            2 =>
-            array (
-                'id' => 5,
-                'user_name' => 'Admin',
-                'email' => 'venegasfabricio93@gmail.com',
-                'telephone' => NULL,
-                'password' => '$2y$12$vIFXG70OhTl8kzVPaGUyNeUorPZ6pbqUN9THm7FeXY/95uVbnSEYO',
-                'remember_token' => 'q00jBu0tgnmuW9tdP6t2FtVKptxq61FvrXkLQr521IMGTIQ2VBJR31X18bP8',
-                'email_verified_at' => NULL,
-                'role_id' => 1,
-                'status_id' => 1,
-                'created_at' => '2026-07-19 20:38:11',
-                'updated_at' => '2026-09-24 17:11:46',
-            ),
-            3 =>
+            2 => 
             array (
                 'id' => 3,
                 'user_name' => 'Bodega',
@@ -76,7 +61,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-06-15 23:32:54',
                 'updated_at' => '2026-08-02 00:49:49',
             ),
-            4 =>
+            3 => 
             array (
                 'id' => 6,
                 'user_name' => 'super',
@@ -90,7 +75,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-08-02 00:53:23',
                 'updated_at' => '2026-08-02 00:53:23',
             ),
-            5 =>
+            4 => 
             array (
                 'id' => 7,
                 'user_name' => 'Gerencia',
@@ -104,8 +89,22 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2026-08-02 00:55:46',
                 'updated_at' => '2026-08-02 00:55:46',
             ),
+            5 => 
+            array (
+                'id' => 5,
+                'user_name' => 'Admin',
+                'email' => 'venegasfabricio93@gmail.com',
+                'telephone' => NULL,
+                'password' => '$2y$12$vIFXG70OhTl8kzVPaGUyNeUorPZ6pbqUN9THm7FeXY/95uVbnSEYO',
+                'remember_token' => 'BwKoilFKnZ5ZPBzRENx21Fjo7EitT6pxxcD4gBxENlI1ioDv1owH7Bdh3HC1',
+                'email_verified_at' => NULL,
+                'role_id' => 1,
+                'status_id' => 1,
+                'created_at' => '2026-07-19 20:38:11',
+                'updated_at' => '2026-09-24 17:11:46',
+            ),
         ));
-
-
+        
+        
     }
 }

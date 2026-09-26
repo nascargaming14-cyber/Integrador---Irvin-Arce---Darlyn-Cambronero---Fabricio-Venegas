@@ -34,6 +34,12 @@ class DatabaseSeeder extends Seeder
             'order_details', 'movements',
         ] as $tabla) {
             DB::statement("SELECT setval(pg_get_serial_sequence('$tabla', 'id'), COALESCE((SELECT MAX(id) FROM $tabla), 1))");
-        }
+            $this->call(UsersTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(ProductSuppliersTableSeeder::class);
+        $this->call(HeaderOrdersTableSeeder::class);
+        $this->call(OrderDetailsTableSeeder::class);
+        $this->call(MovementsTableSeeder::class);
+    }
     }
 }
