@@ -664,27 +664,8 @@
     });
 </script>
 
-<!-- ══ NOTIFICACIONES EN TIEMPO REAL (Laravel Reverb) ══ -->
-<script src="https://cdn.jsdelivr.net/npm/pusher-js@8.4.0/dist/web/pusher.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.16.1/dist/echo.iife.js"></script>
+<!-- ══ TOASTS (siempre disponible, aunque no haya tiempo real) ══ -->
 <script>
-    // 👇 Activa el log de conexión de Pusher/Reverb en la consola del navegador.
-    //    Sin esto, Pusher-js no imprime nada aunque conecte o falle en silencio.
-    Pusher.logToConsole = true;
-
-    window.Echo = new Echo({
-        broadcaster: 'reverb',
-        key: '{{ config('broadcasting.connections.reverb.key') }}',
-        wsHost: '{{ config('broadcasting.connections.reverb.options.host') }}',
-        wsPort: {{ config('broadcasting.connections.reverb.options.port') }},
-        wssPort: {{ config('broadcasting.connections.reverb.options.port') }},
-        forceTLS: false,
-        enabledTransports: ['ws', 'wss'],
-    });
-
-    // 👇 Confirma en consola que el script llegó hasta aquí y que Echo se creó.
-    console.log('✅ Echo inicializado:', window.Echo);
-
     function mostrarToast(titulo, mensaje, tipo = 'primary') {
         const iconos = { success: 'bi-check-circle-fill', warning: 'bi-exclamation-triangle-fill', primary: 'bi-info-circle-fill' };
         const colores = { success: 'text-success', warning: 'text-warning', primary: 'text-primary' };
@@ -708,6 +689,29 @@
         toast.show();
         toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
     }
+</script>
+
+@if (config('broadcasting.default') === 'reverb')
+<!-- ══ NOTIFICACIONES EN TIEMPO REAL (Laravel Reverb) ══ -->
+<script src="https://cdn.jsdelivr.net/npm/pusher-js@8.4.0/dist/web/pusher.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.16.1/dist/echo.iife.js"></script>
+<script>
+    // 👇 Activa el log de conexión de Pusher/Reverb en la consola del navegador.
+    //    Sin esto, Pusher-js no imprime nada aunque conecte o falle en silencio.
+    Pusher.logToConsole = true;
+
+    window.Echo = new Echo({
+        broadcaster: 'reverb',
+        key: '{{ config('broadcasting.connections.reverb.key') }}',
+        wsHost: '{{ config('broadcasting.connections.reverb.options.host') }}',
+        wsPort: {{ config('broadcasting.connections.reverb.options.port') }},
+        wssPort: {{ config('broadcasting.connections.reverb.options.port') }},
+        forceTLS: false,
+        enabledTransports: ['ws', 'wss'],
+    });
+
+    // 👇 Confirma en consola que el script llegó hasta aquí y que Echo se creó.
+    console.log('✅ Echo inicializado:', window.Echo);
 
     Echo.channel('dashboard')
         .listen('.new-order', (e) => {
@@ -717,6 +721,7 @@
             mostrarToast('Stock bajo', `${e.product_name}: quedan ${e.stock} (mínimo ${e.minimum_stock})`, 'warning');
         });
 </script>
+@endif
 
 <!-- Si el navegador restaura la página desde caché (atrás/adelante), la recarga -->
 <script>

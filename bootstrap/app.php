@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'can.access' => \App\Http\Middleware\EnsureUserCanAccess::class,
         ]);
 
+        // Render pone HTTPS por delante de la app: confiar en el proxy para generar URLs https
+        $middleware->trustProxies(at: '*');
+
         // Evita que el navegador guarde páginas en caché (botón atrás/adelante)
         $middleware->web(append: [
             \App\Http\Middleware\PreventBackHistory::class,
