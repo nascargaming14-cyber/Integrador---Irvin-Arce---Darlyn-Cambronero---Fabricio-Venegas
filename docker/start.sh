@@ -6,12 +6,9 @@ PORT="${PORT:-10000}"
 sed -i "s/Listen 80/Listen ${PORT}/" /etc/apache2/ports.conf
 sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf
 
+# Solo crea o actualiza tablas. Los datos de ejemplo NO se cargan aquí:
+# se cargan una sola vez desde una computadora (ver instrucciones del equipo).
 php artisan migrate --force
-
-# Solo en el primer despliegue: poner RUN_SEED=true en Render y luego quitarla
-if [ "${RUN_SEED:-false}" = "true" ]; then
-    php artisan db:seed --force
-fi
 
 php artisan config:cache
 php artisan route:cache
