@@ -12,6 +12,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProductSupplierController;
 use App\Http\Controllers\StockEntryController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\StockReturnController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HeaderOrderController;
 use App\Http\Controllers\OrderDetailController;
@@ -84,6 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('reservations', ReservationController::class)->only(['index', 'create', 'store']);
         Route::post('reservations/{reservation}/despachar', [ReservationController::class, 'despachar'])->name('reservations.despachar');
         Route::post('reservations/{reservation}/cancelar', [ReservationController::class, 'cancelar'])->name('reservations.cancelar');
+        Route::resource('stock-returns', StockReturnController::class)->only(['index', 'create', 'store']);
     });
 
     // ── Categorías ──

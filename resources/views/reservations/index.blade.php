@@ -65,6 +65,9 @@
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-outline-secondary">Cancelar</button>
                                 </form>
+                            @elseif($r->status === 'despachada')
+                                <a href="{{ route('stock-returns.create', ['reservation' => $r->id]) }}"
+                                   class="btn btn-sm btn-outline-primary">Devolver</a>
                             @else
                                 <span class="text-muted small">—</span>
                             @endif

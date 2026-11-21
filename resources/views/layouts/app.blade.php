@@ -535,6 +535,10 @@
                class="nav-item-link {{ request()->routeIs('reservations.*') ? 'active' : '' }}">
                 <i class="bi bi-bookmark-check"></i> Reservas
             </a>
+            <a href="{{ route('stock-returns.index') }}"
+               class="nav-item-link {{ request()->routeIs('stock-returns.*') ? 'active' : '' }}">
+                <i class="bi bi-arrow-return-left"></i> Devoluciones
+            </a>
         @endif
 
         @if(auth()->user()->canAccess('customers') || auth()->user()->canAccess('customers.view'))
