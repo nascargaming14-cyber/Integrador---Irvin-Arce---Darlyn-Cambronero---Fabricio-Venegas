@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
 {
@@ -30,6 +31,11 @@ class OrderController extends Controller
 
     /**
      * Crea una orden completa (cabecera + detalles) en una transacción.
+     *
+     * IV-01 (concurrencia): los productos se bloquean con lockForUpdate()
+     * y se valida el stock dentro de la misma transacción. Si dos órdenes
+     * piden la última unidad, la segunda espera, lee el stock ya descontado
+     * y es rechazada con un 422 y un mensaje claro.
      */
     public function store(Request $request): JsonResponse
     {
@@ -52,8 +58,39 @@ class OrderController extends Controller
             $orderAmount = 0;
             $detailsData = [];
 
+            // 1. Bloquear los productos de la orden. Se ordenan por id para
+            //    evitar deadlocks cuando dos órdenes llevan varios productos.
+            $ids = collect($validated['details'])
+                ->pluck('product_id')
+                ->unique()
+                ->sort()
+                ->values();
+
+            $products = Product::whereIn('id', $ids)
+                ->orderBy('id')
+                ->lockForUpdate()
+                ->get()
+                ->keyBy('id');
+
+            // 2. Validar stock sumando las cantidades por producto
+            //    (por si el mismo producto viene repetido en varias líneas).
+            $pedido = collect($validated['details'])
+                ->groupBy('product_id')
+                ->map(fn ($lineas) => $lineas->sum('quantity'));
+
+            foreach ($pedido as $productId => $cantidad) {
+                $p = $products[$productId];
+
+                if ($p->stock < $cantidad) {
+                    throw ValidationException::withMessages([
+                        'details' => "Stock insuficiente de {$p->product_name}: disponible {$p->stock}, solicitado {$cantidad}.",
+                    ]);
+                }
+            }
+
+            // 3. Armar los detalles
             foreach ($validated['details'] as $item) {
-                $product  = Product::findOrFail($item['product_id']);
+                $product  = $products[$item['product_id']];
                 $subtotal = round($item['quantity'] * $item['price'], 2);
                 $iva      = isset($item['iva']) ? round($subtotal * $item['iva'], 2) : 0;
 

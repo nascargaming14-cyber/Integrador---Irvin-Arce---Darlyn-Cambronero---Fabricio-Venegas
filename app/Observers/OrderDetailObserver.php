@@ -5,22 +5,22 @@ namespace App\Observers;
 use App\Events\LowStockAlert;
 use App\Models\Movement;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class OrderDetailObserver
 {
     /**
      * Se crea una línea de venta -> descuenta stock y registra la salida.
+     *
+     * IV-01: el descuento es una sola instrucción UPDATE con condición
+     * (stock >= cantidad). Si no alcanza, no descuenta nada y se lanza una
+     * ValidationException, que hace rollback de toda la transacción.
      */
     public function created(OrderDetail $detail): void
     {
-        $product = $detail->product;
-
-        if (! $product) {
-            return;
-        }
-
-        $product->decrement('stock', $detail->quantity);
+        $this->descontar((int) $detail->product_id, (float) $detail->quantity);
 
         Movement::create([
             'product_id'      => $detail->product_id,
@@ -32,38 +32,46 @@ class OrderDetailObserver
         ]);
 
         // Si el stock quedó por debajo del mínimo, avisa en tiempo real.
-        $product->refresh();
-        if ($product->stock < $product->minimum_stock) {
+        $product = Product::find($detail->product_id);
+        if ($product && $product->stock < $product->minimum_stock) {
             LowStockAlert::dispatch($product);
         }
     }
 
     /**
-     * Cambia la cantidad de una línea existente (ej. al editar una orden)
-     * -> ajusta el stock por la diferencia y actualiza el movimiento.
+     * Cambia la cantidad (o el producto) de una línea existente
+     * -> ajusta el stock y actualiza el movimiento.
      */
     public function updated(OrderDetail $detail): void
     {
-        if (! $detail->isDirty('quantity')) {
+        if (! $detail->isDirty(['quantity', 'product_id'])) {
             return;
         }
 
-        $product = $detail->product;
+        $productoAnterior = (int) $detail->getOriginal('product_id');
+        $productoNuevo    = (int) $detail->product_id;
+        $cantidadAnterior = (float) $detail->getOriginal('quantity');
+        $cantidadNueva    = (float) $detail->quantity;
 
-        if (! $product) {
-            return;
+        if ($productoAnterior === $productoNuevo) {
+            $diferencia = $cantidadNueva - $cantidadAnterior;
+
+            if ($diferencia > 0) {
+                // Se vende más -> descuenta la diferencia (validando stock).
+                $this->descontar($productoNuevo, $diferencia);
+            } elseif ($diferencia < 0) {
+                // Se vende menos -> devuelve la diferencia.
+                Product::where('id', $productoNuevo)->increment('stock', abs($diferencia));
+            }
+        } else {
+            // Cambió el producto: devuelve al anterior y descuenta del nuevo.
+            Product::where('id', $productoAnterior)->increment('stock', $cantidadAnterior);
+            $this->descontar($productoNuevo, $cantidadNueva);
         }
-
-        $cantidadAnterior = $detail->getOriginal('quantity');
-        $cantidadNueva    = $detail->quantity;
-        $diferencia       = $cantidadNueva - $cantidadAnterior;
-
-        // Si la diferencia es positiva, se está vendiendo más -> descuenta más stock.
-        // Si es negativa, se está vendiendo menos -> devuelve stock.
-        $product->decrement('stock', $diferencia);
 
         Movement::where('order_detail_id', $detail->id)->update([
-            'quantity' => $cantidadNueva,
+            'product_id' => $productoNuevo,
+            'quantity'   => $cantidadNueva,
         ]);
     }
 
@@ -80,5 +88,24 @@ class OrderDetailObserver
         }
 
         Movement::where('order_detail_id', $detail->id)->delete();
+    }
+
+    /**
+     * Descuento atómico y condicional: "UPDATE products SET stock = stock - X
+     * WHERE id = ? AND stock >= X". Nunca deja el stock negativo.
+     */
+    private function descontar(int $productId, float $cantidad): void
+    {
+        $filas = Product::where('id', $productId)
+            ->where('stock', '>=', $cantidad)
+            ->decrement('stock', $cantidad);
+
+        if ($filas === 0) {
+            $nombre = Product::whereKey($productId)->value('product_name') ?? "#{$productId}";
+
+            throw ValidationException::withMessages([
+                'details' => "Stock insuficiente de {$nombre}.",
+            ]);
+        }
     }
 }

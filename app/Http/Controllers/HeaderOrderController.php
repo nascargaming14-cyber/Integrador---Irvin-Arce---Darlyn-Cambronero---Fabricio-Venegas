@@ -11,6 +11,7 @@ use App\Models\Status;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -62,13 +63,23 @@ class HeaderOrderController extends Controller
         return view('orders.create', compact('customers', 'products', 'statuses'));
     }
 
+    /**
+     * IV-01 (concurrencia): la orden se guarda en una transacción que
+     * bloquea los productos (lockForUpdate) y valida el stock antes de
+     * descontarlo. Si dos órdenes piden la última unidad, la segunda espera,
+     * ve el stock en 0 y se rechaza con un mensaje claro.
+     */
     public function store(Request $request): RedirectResponse
     {
         $validated = $this->validateOrder($request);
 
-        $order = DB::transaction(function () use ($validated) {
-            return $this->saveOrderWithDetails($validated);
-        });
+        try {
+            $order = DB::transaction(function () use ($validated) {
+                return $this->saveOrderWithDetails($validated);
+            });
+        } catch (ValidationException $e) {
+            return $this->stockRejection($e);
+        }
 
         NewOrderCreated::dispatch($order->load('customer'));
 
@@ -121,13 +132,25 @@ class HeaderOrderController extends Controller
         $order = HeaderOrder::findOrFail($id);
         $validated = $this->validateOrder($request);
 
-        DB::transaction(function () use ($order, $validated) {
-            foreach ($order->orderDetails as $detail) {
-                $detail->delete();
-            }
+        try {
+            DB::transaction(function () use ($order, $validated) {
+                // Bloquear primero TODOS los productos involucrados (los de las
+                // líneas actuales y los de las nuevas), ordenados por id, para
+                // evitar deadlocks con otras órdenes en paralelo.
+                $this->lockProducts(
+                    $order->orderDetails()->pluck('product_id')
+                        ->merge(collect($validated['details'])->pluck('product_id'))
+                );
 
-            $this->saveOrderWithDetails($validated, $order);
-        });
+                foreach ($order->orderDetails as $detail) {
+                    $detail->delete();
+                }
+
+                $this->saveOrderWithDetails($validated, $order);
+            });
+        } catch (ValidationException $e) {
+            return $this->stockRejection($e);
+        }
 
         return redirect()
             ->route('orders.index')
@@ -186,14 +209,66 @@ class HeaderOrderController extends Controller
         ]);
     }
 
+    /**
+     * Bloquea las filas de productos (SELECT ... FOR UPDATE), ordenadas por id.
+     * Debe llamarse dentro de una transacción. Devuelve los productos con el
+     * stock ya actualizado, indexados por id.
+     */
+    private function lockProducts($ids)
+    {
+        $ids = collect($ids)->unique()->sort()->values();
+
+        return Product::whereIn('id', $ids)
+            ->orderBy('id')
+            ->lockForUpdate()
+            ->get()
+            ->keyBy('id');
+    }
+
+    /**
+     * Respuesta cuando se rechaza una orden por falta de stock.
+     */
+    private function stockRejection(ValidationException $e): RedirectResponse
+    {
+        $mensaje = collect($e->errors())->flatten()->first();
+
+        return redirect()
+            ->back()
+            ->withInput()
+            ->withErrors($e->errors())
+            ->with('error', $mensaje);
+    }
+
     private function saveOrderWithDetails(array $validated, ?HeaderOrder $order = null): HeaderOrder
     {
         $amount   = 0;
         $ivaTotal = 0;
         $lines    = [];
 
+        // 1. Bloquear los productos y leer su stock actual.
+        $products = $this->lockProducts(
+            collect($validated['details'])->pluck('product_id')
+        );
+
+        // 2. Validar stock sumando las cantidades por producto
+        //    (por si el mismo producto viene repetido en varias líneas).
+        $pedido = collect($validated['details'])
+            ->groupBy('product_id')
+            ->map(fn ($lineas) => $lineas->sum(fn ($d) => (float) $d['quantity']));
+
+        foreach ($pedido as $productId => $cantidad) {
+            $p = $products[$productId];
+
+            if ((float) $p->stock < $cantidad) {
+                throw ValidationException::withMessages([
+                    'details' => "Stock insuficiente de {$p->product_name}: disponible {$p->stock}, solicitado {$cantidad}.",
+                ]);
+            }
+        }
+
+        // 3. Armar las líneas.
         foreach ($validated['details'] as $detail) {
-            $product   = Product::findOrFail($detail['product_id']);
+            $product   = $products[$detail['product_id']];
             $quantity  = (float) $detail['quantity'];
             $price     = (float) $detail['price'];
             $ivaPct    = (float) ($detail['iva_percent'] ?? 0);
@@ -234,6 +309,8 @@ class HeaderOrderController extends Controller
             $order = HeaderOrder::create($orderData);
         }
 
+        // 4. Crear las líneas. El OrderDetailObserver descuenta el stock
+        //    (con descuento condicional, nunca deja stock negativo).
         foreach ($lines as $line) {
             $line['header_order_id'] = $order->id;
             OrderDetail::create($line);

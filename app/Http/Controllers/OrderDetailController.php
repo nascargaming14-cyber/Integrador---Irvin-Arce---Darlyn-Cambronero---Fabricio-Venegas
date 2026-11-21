@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class OrderDetailController extends Controller
 {
@@ -26,6 +29,10 @@ class OrderDetailController extends Controller
     /**
      * Crea un nuevo detalle de orden.
      * Copia barcode y product_name desde el producto para mantener historial.
+     *
+     * IV-01 (concurrencia): el producto se bloquea con lockForUpdate() y el
+     * stock se valida dentro de la misma transacción en la que el
+     * OrderDetailObserver lo descuenta.
      */
     public function store(Request $request): JsonResponse
     {
@@ -39,13 +46,24 @@ class OrderDetailController extends Controller
             'status_id'       => 'required|integer|exists:status,id',
         ]);
 
-        // Copiar barcode y nombre del producto al momento de la venta
-        $product = \App\Models\Product::findOrFail($validated['product_id']);
-        $validated['barcode']      = $product->barcode;
-        $validated['product_name'] = $product->product_name;
+        $detail = DB::transaction(function () use ($validated) {
+            // Bloquear el producto hasta que termine la transacción
+            $product = Product::lockForUpdate()->findOrFail($validated['product_id']);
 
-        $detail = OrderDetail::create($validated);
-        $detail->load(['headerOrder', 'product', 'status']);
+            if ($product->stock < $validated['quantity']) {
+                throw ValidationException::withMessages([
+                    'quantity' => "Stock insuficiente de {$product->product_name}: disponible {$product->stock}, solicitado {$validated['quantity']}.",
+                ]);
+            }
+
+            // Copiar barcode y nombre del producto al momento de la venta
+            $validated['barcode']      = $product->barcode;
+            $validated['product_name'] = $product->product_name;
+
+            $detail = OrderDetail::create($validated);
+
+            return $detail->load(['headerOrder', 'product', 'status']);
+        });
 
         return response()->json([
             'success' => true,
@@ -70,11 +88,13 @@ class OrderDetailController extends Controller
 
     /**
      * Actualiza un detalle de orden existente.
+     *
+     * Se bloquean el detalle y los productos involucrados (el anterior y el
+     * nuevo, ordenados por id para evitar deadlocks) y se valida que alcance
+     * el stock para la cantidad adicional que se está pidiendo.
      */
     public function update(Request $request, string $id): JsonResponse
     {
-        $detail = OrderDetail::findOrFail($id);
-
         $validated = $request->validate([
             'header_order_id' => 'required|integer|exists:header_orders,id',
             'product_id'      => 'required|integer|exists:products,id',
@@ -87,8 +107,37 @@ class OrderDetailController extends Controller
             'status_id'       => 'required|integer|exists:status,id',
         ]);
 
-        $detail->update($validated);
-        $detail->load(['headerOrder', 'product', 'status']);
+        $detail = DB::transaction(function () use ($validated, $id) {
+            $detail = OrderDetail::lockForUpdate()->findOrFail($id);
+
+            $ids = collect([$detail->product_id, $validated['product_id']])
+                ->unique()
+                ->sort()
+                ->values();
+
+            $products = Product::whereIn('id', $ids)
+                ->orderBy('id')
+                ->lockForUpdate()
+                ->get()
+                ->keyBy('id');
+
+            $nuevo = $products[$validated['product_id']];
+
+            // Cantidad extra que hay que sacar del stock del producto nuevo
+            $extra = ((int) $detail->product_id === (int) $validated['product_id'])
+                ? (float) $validated['quantity'] - (float) $detail->quantity
+                : (float) $validated['quantity'];
+
+            if ($extra > 0 && $nuevo->stock < $extra) {
+                throw ValidationException::withMessages([
+                    'quantity' => "Stock insuficiente de {$nuevo->product_name}: disponible {$nuevo->stock}, se necesitan {$extra} más.",
+                ]);
+            }
+
+            $detail->update($validated);
+
+            return $detail->load(['headerOrder', 'product', 'status']);
+        });
 
         return response()->json([
             'success' => true,
@@ -99,11 +148,15 @@ class OrderDetailController extends Controller
 
     /**
      * Elimina un detalle de orden.
+     * En una transacción: la devolución de stock del Observer y el borrado
+     * se confirman juntos o no se confirman.
      */
     public function destroy(string $id): JsonResponse
     {
-        $detail = OrderDetail::findOrFail($id);
-        $detail->delete();
+        DB::transaction(function () use ($id) {
+            $detail = OrderDetail::lockForUpdate()->findOrFail($id);
+            $detail->delete();
+        });
 
         return response()->json([
             'success' => true,
