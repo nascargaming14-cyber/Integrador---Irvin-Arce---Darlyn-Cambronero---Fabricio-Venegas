@@ -50,7 +50,7 @@ class OrderDetailController extends Controller
             // Bloquear el producto hasta que termine la transacción
             $product = Product::lockForUpdate()->findOrFail($validated['product_id']);
 
-            if ($product->stock < $validated['quantity']) {
+            if (((float) $product->stock - (float) $product->reserved_stock) < $validated['quantity']) {
                 throw ValidationException::withMessages([
                     'quantity' => "Stock insuficiente de {$product->product_name}: disponible {$product->stock}, solicitado {$validated['quantity']}.",
                 ]);
@@ -128,7 +128,7 @@ class OrderDetailController extends Controller
                 ? (float) $validated['quantity'] - (float) $detail->quantity
                 : (float) $validated['quantity'];
 
-            if ($extra > 0 && $nuevo->stock < $extra) {
+            if ($extra > 0 && ((float) $nuevo->stock - (float) $nuevo->reserved_stock) < $extra) {
                 throw ValidationException::withMessages([
                     'quantity' => "Stock insuficiente de {$nuevo->product_name}: disponible {$nuevo->stock}, se necesitan {$extra} más.",
                 ]);

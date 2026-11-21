@@ -10,6 +10,8 @@ use App\Http\Controllers\UnitMeasurementController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ProductSupplierController;
+use App\Http\Controllers\StockEntryController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HeaderOrderController;
 use App\Http\Controllers\OrderDetailController;
@@ -75,6 +77,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('subcategories', SubCategoryController::class);
         Route::resource('units', UnitMeasurementController::class);
         Route::resource('product-suppliers', ProductSupplierController::class);
+
+        // Entradas de inventario y reservas por proyecto (IV-02).
+        // Usan el mismo permiso 'products', igual que las tablas de apoyo.
+        Route::resource('stock-entries', StockEntryController::class)->only(['index', 'create', 'store']);
+        Route::resource('reservations', ReservationController::class)->only(['index', 'create', 'store']);
+        Route::post('reservations/{reservation}/despachar', [ReservationController::class, 'despachar'])->name('reservations.despachar');
+        Route::post('reservations/{reservation}/cancelar', [ReservationController::class, 'cancelar'])->name('reservations.cancelar');
     });
 
     // ── Categorías ──

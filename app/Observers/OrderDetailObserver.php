@@ -92,12 +92,13 @@ class OrderDetailObserver
 
     /**
      * Descuento atómico y condicional: "UPDATE products SET stock = stock - X
-     * WHERE id = ? AND stock >= X". Nunca deja el stock negativo.
+     * WHERE id = ? AND stock - reserved_stock >= X". Nunca deja el stock
+     * negativo ni vende unidades reservadas para un proyecto.
      */
     private function descontar(int $productId, float $cantidad): void
     {
         $filas = Product::where('id', $productId)
-            ->where('stock', '>=', $cantidad)
+            ->whereRaw('stock - reserved_stock >= ?', [$cantidad])
             ->decrement('stock', $cantidad);
 
         if ($filas === 0) {

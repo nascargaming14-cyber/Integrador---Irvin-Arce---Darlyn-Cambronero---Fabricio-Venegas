@@ -1,0 +1,12 @@
+/login      c=1  completas=100 no2xx=0 rps=3.70 prom=270.153ms p95=330ms max=359ms CUMPLE
+/dashboard  c=1  completas=100 no2xx=0 rps=2.11 prom=474.344ms p95=722ms max=956ms CUMPLE
+/products   c=1  completas=100 no2xx=0 rps=2.48 prom=402.905ms p95=461ms max=505ms CUMPLE
+/orders     c=1  completas=100 no2xx=0 rps=2.61 prom=383.147ms p95=580ms max=919ms CUMPLE
+/login      c=8  completas=100 no2xx=0 rps=7.58 prom=1055.711ms p95=1478ms max=1585ms CUMPLE
+/dashboard  c=8  completas=100 no2xx=0 rps=4.12 prom=1942.590ms p95=2360ms max=2505ms CUMPLE
+/products   c=8  completas=100 no2xx=0 rps=3.62 prom=2212.486ms p95=3338ms max=4573ms NO CUMPLE
+/orders     c=8  completas=100 no2xx=0 rps=4.82 prom=1659.532ms p95=1851ms max=1923ms CUMPLE
+/login      c=15 completas=100 no2xx=0 rps=6.93 prom=2165.862ms p95=3902ms max=5960ms NO CUMPLE
+/dashboard  c=15 completas=100 no2xx=0 rps=3.80 prom=3945.150ms p95=5013ms max=6403ms NO CUMPLE
+/products   c=15 completas=100 no2xx=0 rps=3.58 prom=4188.735ms p95=5422ms max=7675ms NO CUMPLE
+/orders     c=15 completas=100 no2xx=0 rps=4.27 prom=3509.901ms p95=4991ms max=6555ms NO CUMPLE

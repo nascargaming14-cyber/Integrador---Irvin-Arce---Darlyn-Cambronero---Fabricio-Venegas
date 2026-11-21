@@ -190,7 +190,7 @@ class HeaderOrderController extends Controller
             ->whereHas('status', function ($q) {
                 $q->whereIn('status_name', self::AVAILABLE_PRODUCT_STATUSES);
             })
-            ->where('stock', '>', 0)
+            ->whereRaw('stock - reserved_stock > 0')
             ->orderBy('product_name');
     }
 
@@ -258,10 +258,11 @@ class HeaderOrderController extends Controller
 
         foreach ($pedido as $productId => $cantidad) {
             $p = $products[$productId];
+            $disponible = (float) $p->stock - (float) $p->reserved_stock;
 
-            if ((float) $p->stock < $cantidad) {
+            if ($disponible < $cantidad) {
                 throw ValidationException::withMessages([
-                    'details' => "Stock insuficiente de {$p->product_name}: disponible {$p->stock}, solicitado {$cantidad}.",
+                    'details' => "Stock insuficiente de {$p->product_name}: disponible {$disponible} (reservado para proyectos: {$p->reserved_stock}), solicitado {$cantidad}.",
                 ]);
             }
         }

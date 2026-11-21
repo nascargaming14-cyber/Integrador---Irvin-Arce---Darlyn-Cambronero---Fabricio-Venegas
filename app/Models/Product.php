@@ -26,6 +26,7 @@ class Product extends Model
     {
         return [
             'stock'         => 'decimal:2',
+            'reserved_stock' => 'decimal:2',
             'minimum_stock' => 'decimal:2',
             'price_sale'    => 'decimal:2',
             'price_buy'     => 'decimal:2',

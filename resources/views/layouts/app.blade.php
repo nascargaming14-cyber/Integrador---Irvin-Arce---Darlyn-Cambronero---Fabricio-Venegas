@@ -526,6 +526,17 @@
             </a>
         @endif
 
+        @if(auth()->user()->canAccess('products'))
+            <a href="{{ route('stock-entries.index') }}"
+               class="nav-item-link {{ request()->routeIs('stock-entries.*') ? 'active' : '' }}">
+                <i class="bi bi-box-arrow-in-down"></i> Entradas
+            </a>
+            <a href="{{ route('reservations.index') }}"
+               class="nav-item-link {{ request()->routeIs('reservations.*') ? 'active' : '' }}">
+                <i class="bi bi-bookmark-check"></i> Reservas
+            </a>
+        @endif
+
         @if(auth()->user()->canAccess('customers') || auth()->user()->canAccess('customers.view'))
             <a href="{{ route('customers.index') }}"
                class="nav-item-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
